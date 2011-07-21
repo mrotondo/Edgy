@@ -1,0 +1,5 @@
+- Keep a queue of triangles to check for Delaunay and add all triangles initially, then add any new triangles as they are added from flipping
+- Figure out what to do with initial points (so that the first two clicks don't seem to not do anything)
+- store edges in points
+- keep a handle to at least all points in the triangulation for voronoi cell generation
+- generate voronoi nodes from delaunay points

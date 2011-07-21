@@ -1,0 +1,323 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D53F9DB513D7D17C0013CFB3 /* DelaunayEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = D53F9DB413D7D17C0013CFB3 /* DelaunayEdge.m */; };
+		D5E1767713D367E0009A2894 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E1767613D367E0009A2894 /* UIKit.framework */; };
+		D5E1767913D367E0009A2894 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E1767813D367E0009A2894 /* Foundation.framework */; };
+		D5E1767B13D367E0009A2894 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E1767A13D367E0009A2894 /* CoreGraphics.framework */; };
+		D5E1768113D367E0009A2894 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5E1767F13D367E0009A2894 /* InfoPlist.strings */; };
+		D5E1768413D367E0009A2894 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E1768313D367E0009A2894 /* main.m */; };
+		D5E1768713D367E0009A2894 /* DelaunayTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E1768613D367E0009A2894 /* DelaunayTestAppDelegate.m */; };
+		D5E1768A13D367E0009A2894 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5E1768813D367E0009A2894 /* MainWindow.xib */; };
+		D5E1768D13D367E0009A2894 /* DelaunayTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E1768C13D367E0009A2894 /* DelaunayTestViewController.m */; };
+		D5E1769013D367E0009A2894 /* DelaunayTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5E1768E13D367E0009A2894 /* DelaunayTestViewController.xib */; };
+		D5E1769813D36805009A2894 /* DelaunayView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E1769713D36805009A2894 /* DelaunayView.m */; };
+		D5E1769B13D368BE009A2894 /* DelaunayPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E1769A13D368BE009A2894 /* DelaunayPoint.m */; };
+		D5E1769E13D39554009A2894 /* DelaunayTriangle.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E1769D13D39554009A2894 /* DelaunayTriangle.m */; };
+		D5E176A113D39E7A009A2894 /* DelaunayTriangulation.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E176A013D39E7A009A2894 /* DelaunayTriangulation.m */; };
+		D5E176A313D4DFE9009A2894 /* todo in Resources */ = {isa = PBXBuildFile; fileRef = D5E176A213D4DFE9009A2894 /* todo */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D53F9DB313D7D17C0013CFB3 /* DelaunayEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayEdge.h; sourceTree = "<group>"; };
+		D53F9DB413D7D17C0013CFB3 /* DelaunayEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayEdge.m; sourceTree = "<group>"; };
+		D5E1767213D367E0009A2894 /* DelaunayTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DelaunayTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5E1767613D367E0009A2894 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D5E1767813D367E0009A2894 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D5E1767A13D367E0009A2894 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D5E1767E13D367E0009A2894 /* DelaunayTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DelaunayTest-Info.plist"; sourceTree = "<group>"; };
+		D5E1768013D367E0009A2894 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D5E1768213D367E0009A2894 /* DelaunayTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DelaunayTest-Prefix.pch"; sourceTree = "<group>"; };
+		D5E1768313D367E0009A2894 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D5E1768513D367E0009A2894 /* DelaunayTestAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelaunayTestAppDelegate.h; sourceTree = "<group>"; };
+		D5E1768613D367E0009A2894 /* DelaunayTestAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelaunayTestAppDelegate.m; sourceTree = "<group>"; };
+		D5E1768913D367E0009A2894 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		D5E1768B13D367E0009A2894 /* DelaunayTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelaunayTestViewController.h; sourceTree = "<group>"; };
+		D5E1768C13D367E0009A2894 /* DelaunayTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelaunayTestViewController.m; sourceTree = "<group>"; };
+		D5E1768F13D367E0009A2894 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DelaunayTestViewController.xib; sourceTree = "<group>"; };
+		D5E1769613D36805009A2894 /* DelaunayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayView.h; sourceTree = "<group>"; };
+		D5E1769713D36805009A2894 /* DelaunayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayView.m; sourceTree = "<group>"; };
+		D5E1769913D368BE009A2894 /* DelaunayPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayPoint.h; sourceTree = "<group>"; };
+		D5E1769A13D368BE009A2894 /* DelaunayPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayPoint.m; sourceTree = "<group>"; };
+		D5E1769C13D39554009A2894 /* DelaunayTriangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayTriangle.h; sourceTree = "<group>"; };
+		D5E1769D13D39554009A2894 /* DelaunayTriangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayTriangle.m; sourceTree = "<group>"; };
+		D5E1769F13D39E7A009A2894 /* DelaunayTriangulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayTriangulation.h; sourceTree = "<group>"; };
+		D5E176A013D39E7A009A2894 /* DelaunayTriangulation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayTriangulation.m; sourceTree = "<group>"; };
+		D5E176A213D4DFE9009A2894 /* todo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D5E1766F13D367E0009A2894 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5E1767713D367E0009A2894 /* UIKit.framework in Frameworks */,
+				D5E1767913D367E0009A2894 /* Foundation.framework in Frameworks */,
+				D5E1767B13D367E0009A2894 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D5E1766713D367E0009A2894 = {
+			isa = PBXGroup;
+			children = (
+				D5E1767C13D367E0009A2894 /* DelaunayTest */,
+				D5E1767513D367E0009A2894 /* Frameworks */,
+				D5E1767313D367E0009A2894 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D5E1767313D367E0009A2894 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D5E1767213D367E0009A2894 /* DelaunayTest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D5E1767513D367E0009A2894 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D5E1767613D367E0009A2894 /* UIKit.framework */,
+				D5E1767813D367E0009A2894 /* Foundation.framework */,
+				D5E1767A13D367E0009A2894 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D5E1767C13D367E0009A2894 /* DelaunayTest */ = {
+			isa = PBXGroup;
+			children = (
+				D5E1768513D367E0009A2894 /* DelaunayTestAppDelegate.h */,
+				D5E1768613D367E0009A2894 /* DelaunayTestAppDelegate.m */,
+				D5E1768813D367E0009A2894 /* MainWindow.xib */,
+				D5E1768B13D367E0009A2894 /* DelaunayTestViewController.h */,
+				D5E1768C13D367E0009A2894 /* DelaunayTestViewController.m */,
+				D5E1768E13D367E0009A2894 /* DelaunayTestViewController.xib */,
+				D5E1769613D36805009A2894 /* DelaunayView.h */,
+				D5E1769713D36805009A2894 /* DelaunayView.m */,
+				D5E1767D13D367E0009A2894 /* Supporting Files */,
+				D5E1769913D368BE009A2894 /* DelaunayPoint.h */,
+				D5E1769A13D368BE009A2894 /* DelaunayPoint.m */,
+				D53F9DB313D7D17C0013CFB3 /* DelaunayEdge.h */,
+				D53F9DB413D7D17C0013CFB3 /* DelaunayEdge.m */,
+				D5E1769C13D39554009A2894 /* DelaunayTriangle.h */,
+				D5E1769D13D39554009A2894 /* DelaunayTriangle.m */,
+				D5E1769F13D39E7A009A2894 /* DelaunayTriangulation.h */,
+				D5E176A013D39E7A009A2894 /* DelaunayTriangulation.m */,
+				D5E176A213D4DFE9009A2894 /* todo */,
+			);
+			path = DelaunayTest;
+			sourceTree = "<group>";
+		};
+		D5E1767D13D367E0009A2894 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D5E1767E13D367E0009A2894 /* DelaunayTest-Info.plist */,
+				D5E1767F13D367E0009A2894 /* InfoPlist.strings */,
+				D5E1768213D367E0009A2894 /* DelaunayTest-Prefix.pch */,
+				D5E1768313D367E0009A2894 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D5E1767113D367E0009A2894 /* DelaunayTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5E1769313D367E0009A2894 /* Build configuration list for PBXNativeTarget "DelaunayTest" */;
+			buildPhases = (
+				D5E1766E13D367E0009A2894 /* Sources */,
+				D5E1766F13D367E0009A2894 /* Frameworks */,
+				D5E1767013D367E0009A2894 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DelaunayTest;
+			productName = DelaunayTest;
+			productReference = D5E1767213D367E0009A2894 /* DelaunayTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D5E1766913D367E0009A2894 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = Stanford;
+			};
+			buildConfigurationList = D5E1766C13D367E0009A2894 /* Build configuration list for PBXProject "DelaunayTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D5E1766713D367E0009A2894;
+			productRefGroup = D5E1767313D367E0009A2894 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D5E1767113D367E0009A2894 /* DelaunayTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D5E1767013D367E0009A2894 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5E1768113D367E0009A2894 /* InfoPlist.strings in Resources */,
+				D5E1768A13D367E0009A2894 /* MainWindow.xib in Resources */,
+				D5E1769013D367E0009A2894 /* DelaunayTestViewController.xib in Resources */,
+				D5E176A313D4DFE9009A2894 /* todo in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D5E1766E13D367E0009A2894 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5E1768413D367E0009A2894 /* main.m in Sources */,
+				D5E1768713D367E0009A2894 /* DelaunayTestAppDelegate.m in Sources */,
+				D5E1768D13D367E0009A2894 /* DelaunayTestViewController.m in Sources */,
+				D5E1769813D36805009A2894 /* DelaunayView.m in Sources */,
+				D5E1769B13D368BE009A2894 /* DelaunayPoint.m in Sources */,
+				D5E1769E13D39554009A2894 /* DelaunayTriangle.m in Sources */,
+				D5E176A113D39E7A009A2894 /* DelaunayTriangulation.m in Sources */,
+				D53F9DB513D7D17C0013CFB3 /* DelaunayEdge.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D5E1767F13D367E0009A2894 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5E1768013D367E0009A2894 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D5E1768813D367E0009A2894 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5E1768913D367E0009A2894 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		D5E1768E13D367E0009A2894 /* DelaunayTestViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5E1768F13D367E0009A2894 /* en */,
+			);
+			name = DelaunayTestViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D5E1769113D367E0009A2894 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		D5E1769213D367E0009A2894 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		D5E1769413D367E0009A2894 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DelaunayTest/DelaunayTest-Prefix.pch";
+				INFOPLIST_FILE = "DelaunayTest/DelaunayTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D5E1769513D367E0009A2894 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DelaunayTest/DelaunayTest-Prefix.pch";
+				INFOPLIST_FILE = "DelaunayTest/DelaunayTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D5E1766C13D367E0009A2894 /* Build configuration list for PBXProject "DelaunayTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5E1769113D367E0009A2894 /* Debug */,
+				D5E1769213D367E0009A2894 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5E1769313D367E0009A2894 /* Build configuration list for PBXNativeTarget "DelaunayTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5E1769413D367E0009A2894 /* Debug */,
+				D5E1769513D367E0009A2894 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D5E1766913D367E0009A2894 /* Project object */;
+}
