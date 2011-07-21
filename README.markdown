@@ -1,6 +1,6 @@
-# Edgy Does 3 Things:
+## Edgy does 3 things:
 
-## Delaunay Triangulations
+### Delaunay Triangulations
 
 <pre>
 #import "DelaunayTriangulation.h"
@@ -13,10 +13,10 @@ newPoint = [DelaunayPoint pointAtX:100 andY:300];
 [self.triangulation addPoint:newPoint];
 </pre>
 
-## Voronoi Diagrams
+### Voronoi Diagrams
 
 Not yet.
 
-## Natural Neighbor Interpolation
+### Natural Neighbor Interpolation
 
 Not yet.
