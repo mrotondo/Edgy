@@ -7,13 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DelaunayTriangulation.h"
+
+@class DelaunayTriangulation;
+@class DelaunayPoint;
+@class DelaunayEdge;
+@class DelaunayTriangle;
 
 @interface DelaunayView : UIView {
+
+    int edgeOfInterestIndex;
     
 }
 
 @property (nonatomic, retain) DelaunayTriangulation* triangulation;
 @property (nonatomic, retain) DelaunayTriangle *hoverTriangle;
+@property (nonatomic, retain) DelaunayPoint *pointOfInterest;
+@property (nonatomic, retain) DelaunayEdge *edgeOfInterest;
+
+- (void)setPointOfInterest:(DelaunayPoint*)point;
+- (void)incrementEdgeOfInterest;
 
 @end

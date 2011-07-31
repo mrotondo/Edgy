@@ -7,25 +7,74 @@
 //
 
 #import "DelaunayPoint.h"
+#import "DelaunayEdge.h"
 #import "DelaunayTriangle.h"
 
 @implementation DelaunayPoint
-@synthesize neighbors;
 @synthesize x, y;
+@synthesize edges;
+@synthesize UUIDString;
+@synthesize contribution;
 
 + (DelaunayPoint *)pointAtX:(float)newX andY:(float)newY
 {
-    DelaunayPoint *point = [[[self alloc] init] autorelease];
-    point.neighbors = [NSMutableSet set];
-    point.x = newX;
-    point.y = newY;
+    CFUUIDRef UUIDRef = CFUUIDCreate(kCFAllocatorDefault);
+    CFStringRef stringRef = CFUUIDCreateString(kCFAllocatorDefault, UUIDRef);
+    NSString *UUIDString = [(NSString *)stringRef autorelease];
+    CFRelease(UUIDRef);
+    DelaunayPoint *point = [DelaunayPoint pointAtX:newX andY:newY withUUID:UUIDString];
     return point;
 }
 
-- (void) addNeighbor:(DelaunayPoint *)neighbor
++ (DelaunayPoint *)pointAtX:(float)newX andY:(float)newY withUUID:(NSString *)UUIDString
 {
-    [self.neighbors addObject:neighbor];
-    [neighbor.neighbors addObject:self];
+    DelaunayPoint *point = [[[self alloc] init] autorelease];
+    point.x = newX;
+    point.y = newY;
+    point.UUIDString = UUIDString;
+    point.edges = [NSMutableSet set];
+    point.contribution = 0.0;
+    return point;
+}
+
+- (BOOL)isEqual:(id)object
+{
+    if ([object isKindOfClass:[self class]])
+    {
+        return [self.UUIDString isEqual:((DelaunayPoint *)object).UUIDString];
+    }
+    return NO;
+}
+- (NSUInteger)hash
+{
+    return [self.UUIDString hash];
+}
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    DelaunayPoint *copy = [[DelaunayPoint pointAtX:self.x andY:self.y withUUID:self.UUIDString] retain];
+    copy.contribution = self.contribution;
+    return copy;
+}
+
+- (NSArray *)counterClockwiseEdges
+{
+    return [[self.edges allObjects] sortedArrayUsingComparator:^(id obj1, id obj2) {
+        DelaunayEdge *e1 = obj1;
+        DelaunayEdge *e2 = obj2;
+        
+        DelaunayPoint *p1 = [e1 otherPoint:self];
+        DelaunayPoint *p2 = [e2 otherPoint:self];
+        
+        float angle1 = atan2(p1.y - self.y, p1.x - self.x);
+        float angle2 = atan2(p2.y - self.y, p2.x - self.x);
+        if ( angle1 > angle2 )
+            return NSOrderedAscending;
+        else if ( angle1 < angle2 )
+            return NSOrderedDescending;
+        else
+            return NSOrderedSame;
+    }];
 }
 
 @end

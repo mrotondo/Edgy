@@ -11,18 +11,23 @@
 @class DelaunayPoint;
 @class DelaunayTriangle;
 
-@interface DelaunayTriangulation : NSObject {
+@interface DelaunayTriangulation : NSObject <NSCopying> {
  
+    NSMutableSet *points;
     NSMutableSet *triangles;
     NSSet *frameTriangleEdges;
 }
 
+@property (nonatomic, retain) NSMutableSet *points;
 @property (nonatomic, retain) NSMutableSet *triangles;
 @property (nonatomic, retain) NSSet *frameTriangleEdges;
+@property (nonatomic, retain) NSSet *frameTrianglePoints;
 
 + (DelaunayTriangulation *)triangulationWithSize:(CGSize)size;
-- (void)addPoint:(DelaunayPoint *)newPoint;
+- (BOOL)addPoint:(DelaunayPoint *)newPoint;
 - (DelaunayTriangle *)triangleContainingPoint:(DelaunayPoint *)point;
 - (void)enforceDelaunayProperty;
+- (NSDictionary*)voronoiCells;
+- (void)interpolateWeightsWithPoint:(DelaunayPoint *)point;
 
 @end

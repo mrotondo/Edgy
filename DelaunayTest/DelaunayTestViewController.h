@@ -14,7 +14,10 @@
 }
 
 @property (nonatomic, retain) DelaunayTriangulation *triangulation;
+@property (nonatomic, retain) IBOutlet UISwitch *interpaderpSwitch;
+@property BOOL interpolating;
 
 - (void) reset;
+- (IBAction)toggleInterpolation:(UISwitch *)sender;
 
 @end

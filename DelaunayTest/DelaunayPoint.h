@@ -9,16 +9,23 @@
 #import <Foundation/Foundation.h>
 
 
-@interface DelaunayPoint : NSObject {
-    NSMutableSet *neighbors;
-    NSValue *point;
+@interface DelaunayPoint : NSObject <NSCopying> {
+
+    NSMutableSet *edges;
+    float contribution;
 }
 
-@property (nonatomic, retain) NSMutableSet *neighbors;
 @property (nonatomic) float x;
 @property (nonatomic) float y;
+@property (nonatomic, retain) NSString *UUIDString;
+@property (nonatomic, retain) NSMutableSet *edges;
+@property float contribution;
 
 + (DelaunayPoint *) pointAtX:(float)x andY:(float)y;
-- (void) addNeighbor:(DelaunayPoint *)neighbor;
++ (DelaunayPoint *)pointAtX:(float)newX andY:(float)newY withUUID:(NSString *)uuid;
+- (NSArray *)counterClockwiseEdges;
+
+- (BOOL)isEqual:(id)object;
+- (NSUInteger)hash;
 
 @end

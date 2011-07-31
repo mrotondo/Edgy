@@ -10,6 +10,7 @@
 #import "DelaunayPoint.h"
 #import "DelaunayEdge.h"
 #import "DelaunayTriangle.h"
+#import "VoronoiCell.h"
 
 @interface DelaunayTriangulation ()
 
@@ -18,8 +19,9 @@
 @end
 
 @implementation DelaunayTriangulation
+@synthesize points;
 @synthesize triangles;
-@synthesize frameTriangleEdges;
+@synthesize frameTriangleEdges, frameTrianglePoints;
 
 + (DelaunayTriangulation *)triangulationWithSize:(CGSize)size
 {
@@ -31,7 +33,7 @@
     DelaunayPoint *p1 = [DelaunayPoint pointAtX:-10000 andY:0];
     DelaunayPoint *p2 = [DelaunayPoint pointAtX:w * 0.5 andY:10000];
     DelaunayPoint *p3 = [DelaunayPoint pointAtX:10000 andY:0];
-
+    
 //    DelaunayPoint *p1 = [DelaunayPoint pointAtX:w * 0.25 andY:h * 0.25];
 //    DelaunayPoint *p2 = [DelaunayPoint pointAtX:w * 0.5 andY:h * 0.75];
 //    DelaunayPoint *p3 = [DelaunayPoint pointAtX:w * 0.75 andY:h * 0.25];
@@ -42,9 +44,25 @@
     
     DelaunayTriangle *triangle = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:e1, e2, e3, nil] andStartPoint:p1];
     dt.frameTriangleEdges = [NSSet setWithObjects:e1, e2, e3, nil];
+    dt.frameTrianglePoints = [NSSet setWithObjects:p1, p2, p3, nil];
     
     dt.triangles = [NSMutableSet setWithObject:triangle];
+
+    dt.points = [NSMutableSet setWithObjects:p1, p2, p3, nil];
     
+    return dt;
+}
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    // TODO(mrotondo): Implement this in maybe any other way than the least efficient way possible?!
+    DelaunayTriangulation *dt = [DelaunayTriangulation triangulationWithSize:CGSizeMake(1000, 1000)];
+    for ( DelaunayPoint *point in self.points )
+    {
+        if ( [self.frameTrianglePoints containsObject:point] )
+            continue;
+        [dt addPoint:[DelaunayPoint pointAtX:point.x andY:point.y withUUID:point.UUIDString]];
+    }
     return dt;
 }
 
@@ -54,11 +72,13 @@
     [self.triangles removeObject:triangle];
 }
 
-- (void)addPoint:(DelaunayPoint *)newPoint
+- (BOOL)addPoint:(DelaunayPoint *)newPoint
 {
     DelaunayTriangle * triangle = [[[self triangleContainingPoint:newPoint] retain] autorelease];
     if (triangle != nil)
     {
+        [self.points addObject:newPoint];
+        
         [self removeTriangle:triangle];
         
         DelaunayEdge *e1 = [triangle.edges objectAtIndex:0];
@@ -82,7 +102,9 @@
         [self.triangles addObject:e3Triangle];
         
         [self enforceDelaunayProperty];
+        return YES;
     }
+    return NO;
 }
 
 - (DelaunayTriangle *)triangleContainingPoint:(DelaunayPoint *)point
@@ -146,6 +168,7 @@
                         
                         [trianglesToAdd addObject:newTriangle1];
                         [trianglesToAdd addObject:newTriangle2];
+                        [sharedEdge remove];
                         hadToFlip = YES;
                         break;
                     }
@@ -164,6 +187,63 @@
             [self.triangles addObject:triangleToAdd];
         }
     } while (hadToFlip);
+}
+
+- (NSDictionary*)voronoiCells
+{
+    NSMutableDictionary *cells = [NSMutableDictionary dictionary];
+    for (DelaunayPoint *point in self.points)
+    {
+        // Don't add voronoi cells at the frame triangle points
+        if ([self.frameTrianglePoints containsObject:point])
+            continue;
+        
+        NSArray *edges = [point counterClockwiseEdges];
+        NSMutableArray *nodes = [NSMutableArray arrayWithCapacity:[edges count]];
+        DelaunayEdge *prevEdge = [edges lastObject];
+        for (DelaunayEdge *edge in edges)
+        {
+            DelaunayTriangle *sharedTriangle = [edge triangleSharingEdge:prevEdge];
+            [nodes addObject:[NSValue valueWithCGPoint:[sharedTriangle circumcenter]]];
+            prevEdge = edge;
+        }
+        //[cells addObject:[VoronoiCell voronoiCellAtSite:point withNodes:nodes]];
+        [cells setObject:[VoronoiCell voronoiCellAtSite:point withNodes:nodes] forKey:point];
+    }
+    return cells;
+}
+
+- (void)interpolateWeightsWithPoint:(DelaunayPoint *)point
+{
+    DelaunayTriangulation *testTriangulation = [self copy];
+    BOOL added = [testTriangulation addPoint:point];
+    // TODO(mrotondo): Special-case touches right on top of existing points here.
+    if (added)
+    {
+        NSDictionary *voronoiCells = [self voronoiCells];
+        NSDictionary *testVoronoiCells = [testTriangulation voronoiCells];
+        float fractionSum = 0.0;
+        NSMutableDictionary *fractions = [NSMutableDictionary dictionaryWithCapacity:[voronoiCells count]];
+        for ( DelaunayPoint *point in [voronoiCells keyEnumerator] )
+        {
+            VoronoiCell *cell = [voronoiCells objectForKey:point];
+            VoronoiCell *testCell = [testVoronoiCells objectForKey:point];
+            float fractionalChange = 0.0;
+            if ( [cell area] > 0.0 )
+                fractionalChange = 1.0 - MAX(MIN([testCell area] / [cell area], 1.0), 0.0);
+            fractionSum += fractionalChange;
+            [fractions setObject:[NSNumber numberWithFloat:fractionalChange] forKey:point];
+        }
+        if (fractionSum > 0.0)
+        {
+            for ( DelaunayPoint *point in [voronoiCells keyEnumerator] )
+            {
+                VoronoiCell *cell = [voronoiCells objectForKey:point];
+                NSNumber *fractionalChange = [fractions objectForKey:point];
+                cell.site.contribution = [fractionalChange floatValue] / fractionSum;
+            }
+        }
+    }
 }
 
 @end

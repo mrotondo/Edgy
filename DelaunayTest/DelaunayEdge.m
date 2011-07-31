@@ -23,6 +23,12 @@
 {
     DelaunayEdge *edge = [[[self alloc] init] autorelease];
     edge.points = points;
+    
+    for (DelaunayPoint *point in edge.points)
+    {
+        [point.edges addObject:edge];
+    }
+    
     edge.triangles = [NSMutableSet setWithCapacity:3];
     
     return edge;
@@ -76,6 +82,32 @@
     else
         return det > 0;
         
+}
+
+- (DelaunayTriangle *)triangleSharingEdge:(DelaunayEdge *)otherEdge
+{
+    NSMutableSet *sharedTriangles = [self.triangles mutableCopy];
+    [sharedTriangles intersectSet:otherEdge.triangles];
+    
+    if ([sharedTriangles count] == 0)
+    {
+        NSLog(@"ASKED FOR THE SHARED TRIANGLE WITH AN EDGE THAT DOESN'T SHARE ANY TRIANGLES WITH THIS EDGE");
+        return nil;
+    }
+    if ([sharedTriangles count] > 1)
+    {
+        NSLog(@"SOMEHOW THIS EDGE SHARES MORE THAN ONE TRIANGLE WITH THE OTHER EDGE?!");
+        return nil;
+    }
+    return [sharedTriangles anyObject];
+}
+
+- (void)remove
+{
+    for (DelaunayPoint *point in self.points)
+    {
+        [point.edges removeObject:self];
+    }
 }
 
 - (float) determinant:(float[3][3])matrix

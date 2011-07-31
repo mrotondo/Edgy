@@ -25,5 +25,7 @@
 - (DelaunayTriangle *)neighborOf:(DelaunayTriangle *)triangle;
 - (DelaunayPoint *)otherPoint:(DelaunayPoint *)point;
 - (BOOL)pointOnLeft:(DelaunayPoint*)point withStartPoint:(DelaunayPoint *)startPoint;
+- (DelaunayTriangle *)triangleSharingEdge:(DelaunayEdge *)otherEdge;
+- (void)remove;
 
 @end

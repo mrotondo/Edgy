@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D53F9DB513D7D17C0013CFB3 /* DelaunayEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = D53F9DB413D7D17C0013CFB3 /* DelaunayEdge.m */; };
+		D5763E3813D94CE7008B7BE3 /* VoronoiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5763E3713D94CE7008B7BE3 /* VoronoiCell.m */; };
 		D5E1767713D367E0009A2894 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E1767613D367E0009A2894 /* UIKit.framework */; };
 		D5E1767913D367E0009A2894 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E1767813D367E0009A2894 /* Foundation.framework */; };
 		D5E1767B13D367E0009A2894 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E1767A13D367E0009A2894 /* CoreGraphics.framework */; };
@@ -27,6 +28,8 @@
 /* Begin PBXFileReference section */
 		D53F9DB313D7D17C0013CFB3 /* DelaunayEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayEdge.h; sourceTree = "<group>"; };
 		D53F9DB413D7D17C0013CFB3 /* DelaunayEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayEdge.m; sourceTree = "<group>"; };
+		D5763E3613D94CE7008B7BE3 /* VoronoiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoronoiCell.h; sourceTree = "<group>"; };
+		D5763E3713D94CE7008B7BE3 /* VoronoiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoronoiCell.m; sourceTree = "<group>"; };
 		D5E1767213D367E0009A2894 /* DelaunayTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DelaunayTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5E1767613D367E0009A2894 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D5E1767813D367E0009A2894 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -113,6 +116,8 @@
 				D5E1769D13D39554009A2894 /* DelaunayTriangle.m */,
 				D5E1769F13D39E7A009A2894 /* DelaunayTriangulation.h */,
 				D5E176A013D39E7A009A2894 /* DelaunayTriangulation.m */,
+				D5763E3613D94CE7008B7BE3 /* VoronoiCell.h */,
+				D5763E3713D94CE7008B7BE3 /* VoronoiCell.m */,
 				D5E176A213D4DFE9009A2894 /* todo */,
 			);
 			path = DelaunayTest;
@@ -201,6 +206,7 @@
 				D5E1769E13D39554009A2894 /* DelaunayTriangle.m in Sources */,
 				D5E176A113D39E7A009A2894 /* DelaunayTriangulation.m in Sources */,
 				D53F9DB513D7D17C0013CFB3 /* DelaunayEdge.m in Sources */,
+				D5763E3813D94CE7008B7BE3 /* VoronoiCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

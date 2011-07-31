@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "DelaunayTest/DelaunayTriangulation.m"
-         timestampString = "332929008.159861"
+         timestampString = "333763737.254148"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "88"
-         endingLineNumber = "88"
+         startingLineNumber = "110"
+         endingLineNumber = "110"
          landmarkName = "-triangleContainingPoint:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -37,11 +37,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "DelaunayTest/DelaunayTriangulation.m"
-         timestampString = "332925926.650537"
+         timestampString = "333763737.254148"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "57"
-         endingLineNumber = "57"
+         startingLineNumber = "75"
+         endingLineNumber = "75"
          landmarkName = "-addPoint:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -51,11 +51,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "DelaunayTest/DelaunayTriangulation.m"
-         timestampString = "332929008.159861"
+         timestampString = "333763737.254148"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "101"
-         endingLineNumber = "101"
+         startingLineNumber = "123"
+         endingLineNumber = "123"
          landmarkName = "-enforceDelaunayProperty"
          landmarkType = "5">
       </FileBreakpoint>
@@ -65,11 +65,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "DelaunayTest/DelaunayEdge.m"
-         timestampString = "332933781.733885"
+         timestampString = "333012065.215644"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "50"
-         endingLineNumber = "50"
+         startingLineNumber = "56"
+         endingLineNumber = "56"
          landmarkName = "-otherPoint:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -93,11 +93,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "DelaunayTest/DelaunayTriangulation.m"
-         timestampString = "332933585.66035"
+         timestampString = "333763737.254148"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "103"
-         endingLineNumber = "103"
+         startingLineNumber = "125"
+         endingLineNumber = "125"
          landmarkName = "-enforceDelaunayProperty"
          landmarkType = "5">
       </FileBreakpoint>
@@ -107,11 +107,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "DelaunayTest/DelaunayEdge.m"
-         timestampString = "332933781.733885"
+         timestampString = "333012065.215644"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "31"
-         endingLineNumber = "31"
+         startingLineNumber = "37"
+         endingLineNumber = "37"
          landmarkName = "-neighborOf:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -127,6 +127,34 @@
          startingLineNumber = "22"
          endingLineNumber = "22"
          landmarkName = "+triangleWithEdges:andStartPoint:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "DelaunayTest/DelaunayEdge.m"
+         timestampString = "333013079.205179"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "89"
+         endingLineNumber = "89"
+         landmarkName = "-triangleSharingEdge:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "DelaunayTest/DelaunayView.m"
+         timestampString = "333793240.499759"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "135"
+         endingLineNumber = "135"
+         landmarkName = "-drawRect:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
