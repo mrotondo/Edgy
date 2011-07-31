@@ -79,11 +79,7 @@
         UITouch *touch = (UITouch *)[touches anyObject];
         CGPoint loc = [touch locationInView:self.view];
         DelaunayPoint *newPoint = [DelaunayPoint pointAtX:loc.x andY:loc.y];
-        BOOL added = [self.triangulation addPoint:newPoint];
-        if (added)
-            ((DelaunayView *)self.view).pointOfInterest = newPoint;
-        else
-            [(DelaunayView *)self.view incrementEdgeOfInterest];
+        [self.triangulation addPoint:newPoint];
         [self.view setNeedsDisplay];
     }
 }
@@ -96,14 +92,6 @@
         CGPoint loc = [touch locationInView:self.view];
         DelaunayPoint *newPoint = [DelaunayPoint pointAtX:loc.x andY:loc.y];
         [self.triangulation interpolateWeightsWithPoint:newPoint];
-        [self.view setNeedsDisplay];
-    }
-    else
-    {
-        UITouch *touch = (UITouch *)[touches anyObject];
-        CGPoint loc = [touch locationInView:self.view];
-        DelaunayPoint *newPoint = [DelaunayPoint pointAtX:loc.x andY:loc.y];
-        ((DelaunayView *)self.view).hoverTriangle = [self.triangulation triangleContainingPoint:newPoint];
         [self.view setNeedsDisplay];
     }
 }

@@ -30,9 +30,9 @@
     // ADD FRAME TRIANGLE
     float w = size.width;
     float h = size.height;
-    DelaunayPoint *p1 = [DelaunayPoint pointAtX:-10000 andY:0];
+    DelaunayPoint *p1 = [DelaunayPoint pointAtX:-10000 andY:-10000];
     DelaunayPoint *p2 = [DelaunayPoint pointAtX:w * 0.5 andY:10000];
-    DelaunayPoint *p3 = [DelaunayPoint pointAtX:10000 andY:0];
+    DelaunayPoint *p3 = [DelaunayPoint pointAtX:10000 andY:-10000];
     
 //    DelaunayPoint *p1 = [DelaunayPoint pointAtX:w * 0.25 andY:h * 0.25];
 //    DelaunayPoint *p2 = [DelaunayPoint pointAtX:w * 0.5 andY:h * 0.75];
