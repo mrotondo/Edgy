@@ -5,18 +5,26 @@
 <pre>
 #import "DelaunayTriangulation.h"
 DelaunayTriangulation *triangulation = [DelaunayTriangulation triangulationWithSize:CGSizeMake(1000, 1000)];
-DelaunayPoint *newPoint = [DelaunayPoint pointAtX:100 andY:100];
-[self.triangulation addPoint:newPoint];
-newPoint = [DelaunayPoint pointAtX:200 andY:200];
-[self.triangulation addPoint:newPoint];
-newPoint = [DelaunayPoint pointAtX:100 andY:300];
+
+UITouch *touch = (UITouch *)[touches anyObject];
+CGPoint loc = [touch locationInView:self.view];
+DelaunayPoint *newPoint = [DelaunayPoint pointAtX:loc.x andY:loc.y];
 [self.triangulation addPoint:newPoint];
 </pre>
 
 ### Voronoi Diagrams
 
-Not yet.
+<pre>
+NSDictionary *voronoiCells = [self.triangulation voronoiCells];
+</pre>
 
 ### Natural Neighbor Interpolation
 
-Not yet.
+<pre>
+UITouch *touch = (UITouch *)[touches anyObject];
+CGPoint loc = [touch locationInView:self.view];
+DelaunayPoint *newPoint = [DelaunayPoint pointAtX:loc.x andY:loc.y];
+[self.triangulation interpolateWeightsWithPoint:newPoint];
+</pre>
+
+After interpolateWeightsWithPoint is called, each DelaunayPoint in the DelaunayTriangulation object's points set will have a contribution property that is between [0, 1] and represents the weight of that point's contribution to the output at the interpolated point.

@@ -55,7 +55,7 @@
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    // TODO(mrotondo): Implement this in maybe any other way than the least efficient way possible?!
+    // TODO(mrotondo): Implement this in maybe any other way than the least efficient way possible?! That is, copy over the actual structures instead of re-computing all the triangles & flips etc.
     DelaunayTriangulation *dt = [DelaunayTriangulation triangulationWithSize:CGSizeMake(1000, 1000)];
     for ( DelaunayPoint *point in self.points )
     {
@@ -74,6 +74,7 @@
 
 - (BOOL)addPoint:(DelaunayPoint *)newPoint
 {
+    // TODO(mrotondo): Mirror the points into the 8 surrounding regions to fix up interpolation around the edges.
     DelaunayTriangle * triangle = [[[self triangleContainingPoint:newPoint] retain] autorelease];
     if (triangle != nil)
     {
@@ -119,7 +120,6 @@
     return nil;
 }
 
-// TODO(mrotondo): Clean this up! The code should not be copy/pasted 3x like it is :(:( It should also modify the list in place somehow
 - (void)enforceDelaunayProperty
 {
     bool hadToFlip;
@@ -221,6 +221,7 @@
     if (added)
     {
         NSDictionary *voronoiCells = [self voronoiCells];
+        // TODO(mrotondo): Interpolate by adding and removing a point instead of copying the whole triangulation
         NSDictionary *testVoronoiCells = [testTriangulation voronoiCells];
         float fractionSum = 0.0;
         NSMutableDictionary *fractions = [NSMutableDictionary dictionaryWithCapacity:[voronoiCells count]];
