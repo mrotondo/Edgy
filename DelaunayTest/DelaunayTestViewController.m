@@ -80,6 +80,55 @@
         CGPoint loc = [touch locationInView:self.view];
         DelaunayPoint *newPoint = [DelaunayPoint pointAtX:loc.x andY:loc.y];
         [self.triangulation addPoint:newPoint];
+
+        
+        BOOL mirror = NO;
+        if ( mirror )
+        {
+            CGSize size = self.view.bounds.size;
+            
+            // top left
+            CGPoint mirrorLoc = CGPointMake(-loc.x, -loc.y);
+            newPoint = [DelaunayPoint pointAtX:mirrorLoc.x andY:mirrorLoc.y];
+            [self.triangulation addPoint:newPoint];
+            
+            // top
+            mirrorLoc = CGPointMake(loc.x, -loc.y);
+            newPoint = [DelaunayPoint pointAtX:mirrorLoc.x andY:mirrorLoc.y];
+            [self.triangulation addPoint:newPoint];
+            
+            // top right
+            mirrorLoc = CGPointMake(size.width + loc.x, -loc.y);
+            newPoint = [DelaunayPoint pointAtX:mirrorLoc.x andY:mirrorLoc.y];
+            [self.triangulation addPoint:newPoint];
+            
+            // left
+            mirrorLoc = CGPointMake(-loc.x, loc.y);
+            newPoint = [DelaunayPoint pointAtX:mirrorLoc.x andY:mirrorLoc.y];
+            [self.triangulation addPoint:newPoint];
+            
+            // right
+            mirrorLoc = CGPointMake(size.width + loc.x, loc.y);
+            newPoint = [DelaunayPoint pointAtX:mirrorLoc.x andY:mirrorLoc.y];
+            [self.triangulation addPoint:newPoint];
+            
+            // bottom left
+            mirrorLoc = CGPointMake(-loc.x, size.height + loc.y);
+            newPoint = [DelaunayPoint pointAtX:mirrorLoc.x andY:mirrorLoc.y];
+            [self.triangulation addPoint:newPoint];
+            
+            // bottom
+            mirrorLoc = CGPointMake(loc.x, size.height + loc.y);
+            newPoint = [DelaunayPoint pointAtX:mirrorLoc.x andY:mirrorLoc.y];
+            [self.triangulation addPoint:newPoint];
+            
+            // bottom right
+            mirrorLoc = CGPointMake(size.width + loc.x, size.height + loc.y);
+            newPoint = [DelaunayPoint pointAtX:mirrorLoc.x andY:mirrorLoc.y];
+            [self.triangulation addPoint:newPoint];
+        }
+        
+        
         [self.view setNeedsDisplay];
     }
 }
