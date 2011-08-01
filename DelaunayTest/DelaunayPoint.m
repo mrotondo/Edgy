@@ -15,6 +15,7 @@
 @synthesize edges;
 @synthesize UUIDString;
 @synthesize contribution;
+@synthesize value;
 
 + (DelaunayPoint *)pointAtX:(float)newX andY:(float)newY
 {

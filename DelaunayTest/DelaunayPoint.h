@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSString *UUIDString;
 @property (nonatomic, retain) NSMutableSet *edges;
 @property float contribution;
+@property (nonatomic, retain) id value;
 
 + (DelaunayPoint *) pointAtX:(float)x andY:(float)y;
 + (DelaunayPoint *)pointAtX:(float)newX andY:(float)newY withUUID:(NSString *)uuid;
