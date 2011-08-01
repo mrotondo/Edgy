@@ -37,8 +37,8 @@
         if ([triangle inFrameTriangleOfTriangulation:self.triangulation])
             continue;
         
-        //[triangle.color set];
-        [[UIColor whiteColor] set];
+        [triangle.color set];
+        //[[UIColor whiteColor] set];
         [[UIColor blackColor] setStroke];
         [triangle drawInContext:ctx];
         CGContextDrawPath(ctx, kCGPathFillStroke);
