@@ -32,6 +32,8 @@
 		D5E1769E13D39554009A2894 /* DelaunayTriangle.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E1769D13D39554009A2894 /* DelaunayTriangle.m */; };
 		D5E176A113D39E7A009A2894 /* DelaunayTriangulation.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E176A013D39E7A009A2894 /* DelaunayTriangulation.m */; };
 		D5E176A313D4DFE9009A2894 /* todo in Resources */ = {isa = PBXBuildFile; fileRef = D5E176A213D4DFE9009A2894 /* todo */; };
+		D5E8109B13EE267300C137FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E1767613D367E0009A2894 /* UIKit.framework */; };
+		D5E8109C13EE267300C137FF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E1767A13D367E0009A2894 /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +74,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5A55A1113EE19130001ADF7 /* Foundation.framework in Frameworks */,
+				D5E8109B13EE267300C137FF /* UIKit.framework in Frameworks */,
+				D5E8109C13EE267300C137FF /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
