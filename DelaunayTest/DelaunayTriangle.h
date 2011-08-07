@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSArray *edges;
 @property (nonatomic, retain) DelaunayPoint *startPoint;
 @property (nonatomic, retain) UIColor *color;
+@property (nonatomic, readonly) NSArray *points;
 
 + (DelaunayTriangle *) triangleWithEdges:(NSArray *)edges andStartPoint:(DelaunayPoint *)startPoint;
 - (BOOL)containsPoint:(DelaunayPoint *)point;

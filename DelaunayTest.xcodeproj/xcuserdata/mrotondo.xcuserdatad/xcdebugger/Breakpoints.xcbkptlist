@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "DelaunayTest/DelaunayTriangulation.m"
-         timestampString = "333796536.379262"
+         timestampString = "334376183.627536"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "111"
-         endingLineNumber = "111"
+         startingLineNumber = "113"
+         endingLineNumber = "113"
          landmarkName = "-triangleContainingPoint:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -37,11 +37,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "DelaunayTest/DelaunayTriangulation.m"
-         timestampString = "333763737.254148"
+         timestampString = "334376183.627536"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "75"
-         endingLineNumber = "75"
+         startingLineNumber = "77"
+         endingLineNumber = "77"
          landmarkName = "-addPoint:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -51,11 +51,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "DelaunayTest/DelaunayTriangulation.m"
-         timestampString = "333763737.254148"
+         timestampString = "334376183.627536"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "123"
-         endingLineNumber = "123"
+         startingLineNumber = "125"
+         endingLineNumber = "125"
          landmarkName = "-enforceDelaunayProperty"
          landmarkType = "5">
       </FileBreakpoint>
@@ -93,11 +93,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "DelaunayTest/DelaunayTriangulation.m"
-         timestampString = "333763737.254148"
+         timestampString = "334376183.627536"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "125"
-         endingLineNumber = "125"
+         startingLineNumber = "127"
+         endingLineNumber = "127"
          landmarkName = "-enforceDelaunayProperty"
          landmarkType = "5">
       </FileBreakpoint>
@@ -155,6 +155,48 @@
          startingLineNumber = "75"
          endingLineNumber = "75"
          landmarkName = "-drawRect:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "DelaunayTest/DelaunayTestViewController.m"
+         timestampString = "334376893.258853"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "71"
+         endingLineNumber = "71"
+         landmarkName = "-touchesBegan:withEvent:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "DelaunayTest/DelaunayTriangulation.m"
+         timestampString = "334388272.720046"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "230"
+         endingLineNumber = "230"
+         landmarkName = "-interpolateWeightsWithPoint:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "DelaunayTest/DelaunayTriangulation.m"
+         timestampString = "334388458.511265"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "240"
+         endingLineNumber = "240"
+         landmarkName = "-interpolateWeightsWithPoint:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

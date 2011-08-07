@@ -70,7 +70,7 @@
     NSDictionary *voronoiCells = [self.triangulation voronoiCells];    
     for (VoronoiCell *cell in [voronoiCells objectEnumerator])
     {
-        [[UIColor colorWithWhite:cell.site.contribution alpha:0.2] set];
+        [[UIColor colorWithWhite:cell.site.contribution alpha:0.5] set];
         [cell drawInContext:ctx];
         CGContextFillPath(ctx);
     }

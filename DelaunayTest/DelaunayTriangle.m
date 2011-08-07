@@ -98,14 +98,19 @@
 
 - (BOOL)inFrameTriangleOfTriangulation:(DelaunayTriangulation *)triangulation
 {
+    return [[NSSet setWithArray: self.points] intersectsSet:triangulation.frameTrianglePoints];
+}
+
+- (NSArray *)points
+{
+    NSMutableArray *points = [NSMutableArray arrayWithCapacity:3];
+    DelaunayPoint *edgeStartPoint = self.startPoint;
     for (DelaunayEdge *edge in self.edges)
     {
-        if ([triangulation.frameTriangleEdges containsObject:edge])
-        {
-            return YES;
-        }
+        [points insertObject:edgeStartPoint atIndex:[points count]];
+        edgeStartPoint = [edge otherPoint:edgeStartPoint];
     }
-    return NO;
+    return points;
 }
 
 - (NSSet *)neighbors

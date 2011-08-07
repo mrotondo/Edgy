@@ -15,14 +15,13 @@
  
     NSMutableSet *points;
     NSMutableSet *triangles;
-    NSSet *frameTriangleEdges;
 }
 
 @property (nonatomic, retain) NSMutableSet *points;
 @property (nonatomic, retain) NSMutableSet *triangles;
-@property (nonatomic, retain) NSSet *frameTriangleEdges;
 @property (nonatomic, retain) NSSet *frameTrianglePoints;
 
++ (DelaunayTriangulation *)triangulation;
 + (DelaunayTriangulation *)triangulationWithSize:(CGSize)size;
 - (BOOL)addPoint:(DelaunayPoint *)newPoint;
 - (DelaunayTriangle *)triangleContainingPoint:(DelaunayPoint *)point;

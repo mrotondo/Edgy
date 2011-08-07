@@ -58,7 +58,7 @@
 
 - (void)reset
 {
-    self.triangulation = [DelaunayTriangulation triangulationWithSize:self.view.bounds.size];
+    self.triangulation = [DelaunayTriangulation triangulation];
     ((DelaunayView *)self.view).triangulation = triangulation;
     self.interpaderpSwitch.on = NO;
     self.interpolating = NO;

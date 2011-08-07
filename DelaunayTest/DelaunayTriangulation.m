@@ -21,7 +21,12 @@
 @implementation DelaunayTriangulation
 @synthesize points;
 @synthesize triangles;
-@synthesize frameTriangleEdges, frameTrianglePoints;
+@synthesize frameTrianglePoints;
+
++ (DelaunayTriangulation *)triangulation
+{
+    return [DelaunayTriangulation triangulationWithSize:CGSizeMake(20000, 20000)];
+}
 
 + (DelaunayTriangulation *)triangulationWithSize:(CGSize)size
 {
@@ -30,24 +35,20 @@
     // ADD FRAME TRIANGLE
     float w = size.width;
     float h = size.height;
-    DelaunayPoint *p1 = [DelaunayPoint pointAtX:-10000 andY:-10000];
-    DelaunayPoint *p2 = [DelaunayPoint pointAtX:w * 0.5 andY:10000];
-    DelaunayPoint *p3 = [DelaunayPoint pointAtX:10000 andY:-10000];
-    
-//    DelaunayPoint *p1 = [DelaunayPoint pointAtX:w * 0.25 andY:h * 0.25];
-//    DelaunayPoint *p2 = [DelaunayPoint pointAtX:w * 0.5 andY:h * 0.75];
-//    DelaunayPoint *p3 = [DelaunayPoint pointAtX:w * 0.75 andY:h * 0.25];
+
+    DelaunayPoint *p1 = [DelaunayPoint pointAtX:-w / 2 andY:-h / 2];
+    DelaunayPoint *p2 = [DelaunayPoint pointAtX:0 andY:h / 2];
+    DelaunayPoint *p3 = [DelaunayPoint pointAtX:w / 2 andY:-h / 2];
     
     DelaunayEdge *e1 = [DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:p1, p2, nil]];
     DelaunayEdge *e2 = [DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:p2, p3, nil]];
     DelaunayEdge *e3 = [DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:p3, p1, nil]];
     
     DelaunayTriangle *triangle = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:e1, e2, e3, nil] andStartPoint:p1];
-    dt.frameTriangleEdges = [NSSet setWithObjects:e1, e2, e3, nil];
     dt.frameTrianglePoints = [NSSet setWithObjects:p1, p2, p3, nil];
     
     dt.triangles = [NSMutableSet setWithObject:triangle];
-
+    
     dt.points = [NSMutableSet setWithObjects:p1, p2, p3, nil];
     
     return dt;
@@ -56,7 +57,7 @@
 - (id)copyWithZone:(NSZone *)zone
 {
     // TODO(mrotondo): Implement this in maybe any other way than the least efficient way possible?! That is, copy over the actual structures instead of re-computing all the triangles & flips etc.
-    DelaunayTriangulation *dt = [DelaunayTriangulation triangulationWithSize:CGSizeMake(1000, 1000)];
+    DelaunayTriangulation *dt = [DelaunayTriangulation triangulation];
     for ( DelaunayPoint *point in self.points )
     {
         if ( [self.frameTrianglePoints containsObject:point] )
