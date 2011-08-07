@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Edgy' target in the 'Edgy' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

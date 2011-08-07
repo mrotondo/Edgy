@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		D53F9DB513D7D17C0013CFB3 /* DelaunayEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = D53F9DB413D7D17C0013CFB3 /* DelaunayEdge.m */; };
 		D5763E3813D94CE7008B7BE3 /* VoronoiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5763E3713D94CE7008B7BE3 /* VoronoiCell.m */; };
+		D5A55A1113EE19130001ADF7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E1767813D367E0009A2894 /* Foundation.framework */; };
+		D5A55A1913EE19630001ADF7 /* DelaunayTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E1768613D367E0009A2894 /* DelaunayTestAppDelegate.m */; };
+		D5A55A1A13EE19630001ADF7 /* DelaunayTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E1768C13D367E0009A2894 /* DelaunayTestViewController.m */; };
+		D5A55A1B13EE19630001ADF7 /* DelaunayView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E1769713D36805009A2894 /* DelaunayView.m */; };
+		D5A55A1C13EE19630001ADF7 /* DelaunayPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E1769A13D368BE009A2894 /* DelaunayPoint.m */; };
+		D5A55A1D13EE19630001ADF7 /* DelaunayEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = D53F9DB413D7D17C0013CFB3 /* DelaunayEdge.m */; };
+		D5A55A1E13EE19630001ADF7 /* DelaunayTriangle.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E1769D13D39554009A2894 /* DelaunayTriangle.m */; };
+		D5A55A1F13EE19630001ADF7 /* DelaunayTriangulation.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E176A013D39E7A009A2894 /* DelaunayTriangulation.m */; };
+		D5A55A2013EE19630001ADF7 /* VoronoiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5763E3713D94CE7008B7BE3 /* VoronoiCell.m */; };
 		D5E1767713D367E0009A2894 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E1767613D367E0009A2894 /* UIKit.framework */; };
 		D5E1767913D367E0009A2894 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E1767813D367E0009A2894 /* Foundation.framework */; };
 		D5E1767B13D367E0009A2894 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E1767A13D367E0009A2894 /* CoreGraphics.framework */; };
@@ -30,6 +39,8 @@
 		D53F9DB413D7D17C0013CFB3 /* DelaunayEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayEdge.m; sourceTree = "<group>"; };
 		D5763E3613D94CE7008B7BE3 /* VoronoiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoronoiCell.h; sourceTree = "<group>"; };
 		D5763E3713D94CE7008B7BE3 /* VoronoiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoronoiCell.m; sourceTree = "<group>"; };
+		D5A55A1013EE19130001ADF7 /* libEdgy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEdgy.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5A55A1413EE19130001ADF7 /* Edgy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Edgy-Prefix.pch"; sourceTree = "<group>"; };
 		D5E1767213D367E0009A2894 /* DelaunayTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DelaunayTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5E1767613D367E0009A2894 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D5E1767813D367E0009A2894 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -56,6 +67,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D5A55A0D13EE19130001ADF7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5A55A1113EE19130001ADF7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D5E1766F13D367E0009A2894 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -69,10 +88,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D5A55A1213EE19130001ADF7 /* Edgy */ = {
+			isa = PBXGroup;
+			children = (
+				D5A55A1313EE19130001ADF7 /* Supporting Files */,
+			);
+			path = Edgy;
+			sourceTree = "<group>";
+		};
+		D5A55A1313EE19130001ADF7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D5A55A1413EE19130001ADF7 /* Edgy-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		D5E1766713D367E0009A2894 = {
 			isa = PBXGroup;
 			children = (
 				D5E1767C13D367E0009A2894 /* DelaunayTest */,
+				D5A55A1213EE19130001ADF7 /* Edgy */,
 				D5E1767513D367E0009A2894 /* Frameworks */,
 				D5E1767313D367E0009A2894 /* Products */,
 			);
@@ -82,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				D5E1767213D367E0009A2894 /* DelaunayTest.app */,
+				D5A55A1013EE19130001ADF7 /* libEdgy.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -136,7 +173,34 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		D5A55A0E13EE19130001ADF7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		D5A55A0F13EE19130001ADF7 /* Edgy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5A55A1713EE19130001ADF7 /* Build configuration list for PBXNativeTarget "Edgy" */;
+			buildPhases = (
+				D5A55A0C13EE19130001ADF7 /* Sources */,
+				D5A55A0D13EE19130001ADF7 /* Frameworks */,
+				D5A55A0E13EE19130001ADF7 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Edgy;
+			productName = Edgy;
+			productReference = D5A55A1013EE19130001ADF7 /* libEdgy.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		D5E1767113D367E0009A2894 /* DelaunayTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D5E1769313D367E0009A2894 /* Build configuration list for PBXNativeTarget "DelaunayTest" */;
@@ -175,6 +239,7 @@
 			projectRoot = "";
 			targets = (
 				D5E1767113D367E0009A2894 /* DelaunayTest */,
+				D5A55A0F13EE19130001ADF7 /* Edgy */,
 			);
 		};
 /* End PBXProject section */
@@ -194,6 +259,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D5A55A0C13EE19130001ADF7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5A55A1913EE19630001ADF7 /* DelaunayTestAppDelegate.m in Sources */,
+				D5A55A1A13EE19630001ADF7 /* DelaunayTestViewController.m in Sources */,
+				D5A55A1B13EE19630001ADF7 /* DelaunayView.m in Sources */,
+				D5A55A1C13EE19630001ADF7 /* DelaunayPoint.m in Sources */,
+				D5A55A1D13EE19630001ADF7 /* DelaunayEdge.m in Sources */,
+				D5A55A1E13EE19630001ADF7 /* DelaunayTriangle.m in Sources */,
+				D5A55A1F13EE19630001ADF7 /* DelaunayTriangulation.m in Sources */,
+				D5A55A2013EE19630001ADF7 /* VoronoiCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D5E1766E13D367E0009A2894 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -240,6 +320,32 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D5A55A1513EE19130001ADF7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DSTROOT = /tmp/Edgy.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Edgy/Edgy-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D5A55A1613EE19130001ADF7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DSTROOT = /tmp/Edgy.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Edgy/Edgy-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		D5E1769113D367E0009A2894 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -254,7 +360,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -270,7 +376,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -305,6 +411,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D5A55A1713EE19130001ADF7 /* Build configuration list for PBXNativeTarget "Edgy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5A55A1513EE19130001ADF7 /* Debug */,
+				D5A55A1613EE19130001ADF7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D5E1766C13D367E0009A2894 /* Build configuration list for PBXProject "DelaunayTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

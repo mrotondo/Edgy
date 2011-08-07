@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>Edgy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>D5A55A0F13EE19130001ADF7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D5E1767113D367E0009A2894</key>
 		<dict>
 			<key>primary</key>
