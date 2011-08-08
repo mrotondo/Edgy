@@ -14,10 +14,12 @@
 @interface DelaunayTriangulation : NSObject <NSCopying> {
  
     NSMutableSet *points;
+    NSMutableSet *edges;
     NSMutableSet *triangles;
 }
 
 @property (nonatomic, retain) NSMutableSet *points;
+@property (nonatomic, retain) NSMutableSet *edges;
 @property (nonatomic, retain) NSMutableSet *triangles;
 @property (nonatomic, retain) NSSet *frameTrianglePoints;
 

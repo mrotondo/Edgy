@@ -17,25 +17,72 @@
 @end
 
 @implementation DelaunayEdge
-@synthesize triangles, points;
 
 + (DelaunayEdge *)edgeWithPoints:(NSArray *)points
 {
     DelaunayEdge *edge = [[[self alloc] init] autorelease];
-    edge.points = points;
     
-    for (DelaunayPoint *point in edge.points)
+    edge.points = points;
+
+    for (DelaunayPoint *point in points)
     {
         [point.edges addObject:edge];
     }
     
-    edge.triangles = [NSMutableSet setWithCapacity:3];
+    edge.triangles = [NSMutableSet setWithCapacity:2];
     
     return edge;
 }
 
+- (void)dealloc
+{
+    CFRelease(nonretainingPoints);
+    CFRelease(nonretainingTriangles);
+    [super dealloc];
+}
+
+- (BOOL)isEqual:(id)object
+{
+    if ([object isKindOfClass:[self class]])
+    {
+        NSSet *pointsSet = [NSSet setWithArray:self.points];
+        NSSet *otherPointsSet = [NSSet setWithArray:((DelaunayEdge *)object).points];
+        return [pointsSet isEqualToSet:otherPointsSet];
+    }
+    return NO;
+}
+- (NSUInteger)hash
+{
+    NSSet *pointsSet = [NSSet setWithArray:self.points];
+    return [pointsSet hash];
+}
+
+- (NSMutableSet *)triangles
+{
+    return (NSMutableSet *)nonretainingTriangles;
+}
+- (void)setTriangles:(NSMutableSet *)triangles
+{
+    nonretainingTriangles = CFSetCreateMutableCopy(NULL, 2, (CFMutableSetRef)triangles);
+}
+
+- (NSArray *)points
+{
+    return (NSArray *)nonretainingPoints;
+}
+- (void)setPoints:(NSArray *)points
+{
+    nonretainingPoints = CFArrayCreateCopy(NULL, (CFArrayRef) points);
+}
+
 - (DelaunayTriangle *)neighborOf:(DelaunayTriangle *)triangle
 {
+    if (![self.triangles containsObject:triangle])
+    {
+        NSLog(@"ASKED FOR THE NEIGHBOR OF A TRIANGLE THROUGH AN EDGE THAT DOESN'T BORDER THAT TRIANGLE!");
+        return nil;
+    }
+    
     // There should only ever be 2 triangles in self.triangles
     for (DelaunayTriangle *edgeTriangle in self.triangles)
     {
@@ -47,9 +94,9 @@
 
 - (DelaunayPoint *)otherPoint:(DelaunayPoint *)point
 {
-    if ([self.points objectAtIndex:0] == point)
+    if ( [[self.points objectAtIndex:0] isEqual: point] )
         return [self.points objectAtIndex:1];
-    else if ([self.points objectAtIndex:1] == point)
+    else if ( [[self.points objectAtIndex:1] isEqual: point] )
         return [self.points objectAtIndex:0];
     else
     {
@@ -84,9 +131,10 @@
         
 }
 
-- (DelaunayTriangle *)triangleSharingEdge:(DelaunayEdge *)otherEdge
+- (DelaunayTriangle *)sharedTriangleWithEdge:(DelaunayEdge *)otherEdge
 {
     NSMutableSet *sharedTriangles = [self.triangles mutableCopy];
+    
     [sharedTriangles intersectSet:otherEdge.triangles];
     
     if ([sharedTriangles count] == 0)

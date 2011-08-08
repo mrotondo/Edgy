@@ -13,19 +13,21 @@
 
 @interface DelaunayEdge : NSObject {
     
-    NSMutableSet *triangles;
-    NSArray *points;
-    
+    CFMutableSetRef nonretainingTriangles;
+    CFArrayRef nonretainingPoints;
 }
 
-@property (nonatomic, retain) NSMutableSet *triangles;
-@property (nonatomic, retain) NSArray *points;
+@property (nonatomic, assign) NSMutableSet *triangles;
+@property (nonatomic, assign) NSArray *points;
 
 + (DelaunayEdge *)edgeWithPoints:(NSArray *)points;
 - (DelaunayTriangle *)neighborOf:(DelaunayTriangle *)triangle;
 - (DelaunayPoint *)otherPoint:(DelaunayPoint *)point;
 - (BOOL)pointOnLeft:(DelaunayPoint*)point withStartPoint:(DelaunayPoint *)startPoint;
-- (DelaunayTriangle *)triangleSharingEdge:(DelaunayEdge *)otherEdge;
+- (DelaunayTriangle *)sharedTriangleWithEdge:(DelaunayEdge *)otherEdge;
 - (void)remove;
+
+- (BOOL)isEqual:(id)object;
+- (NSUInteger)hash;
 
 @end

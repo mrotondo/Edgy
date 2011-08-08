@@ -13,13 +13,13 @@
 @class DelaunayTriangulation;
 
 @interface DelaunayTriangle : NSObject {
-    NSArray *edges;
+    CFArrayRef nonretainingEdges;
     DelaunayPoint *startPoint;
     UIColor *color;
 }
 
-@property (nonatomic, retain) NSArray *edges;
-@property (nonatomic, retain) DelaunayPoint *startPoint;
+@property (nonatomic, assign) NSArray *edges;
+@property (nonatomic, assign) DelaunayPoint *startPoint;
 @property (nonatomic, retain) UIColor *color;
 @property (nonatomic, readonly) NSArray *points;
 

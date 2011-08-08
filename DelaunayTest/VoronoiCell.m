@@ -23,6 +23,14 @@
     return cell;
 }
 
+- (void)dealloc
+{
+    [site release];
+    [nodes release];
+    
+    [super dealloc];
+}
+
 - (void)drawInContext:(CGContextRef)ctx
 {
     NSValue *prevPoint = [self.nodes lastObject];

@@ -12,7 +12,6 @@
 
 @implementation DelaunayPoint
 @synthesize x, y;
-@synthesize edges;
 @synthesize UUIDString;
 @synthesize contribution;
 @synthesize value;
@@ -38,11 +37,20 @@
     return point;
 }
 
+- (void)dealloc
+{
+    [UUIDString release];
+    CFRelease(nonretainingEdges);
+    [value release];
+    
+    [super dealloc];
+}
+
 - (BOOL)isEqual:(id)object
 {
     if ([object isKindOfClass:[self class]])
     {
-        return [self.UUIDString isEqual:((DelaunayPoint *)object).UUIDString];
+        return [self.UUIDString isEqualToString:((DelaunayPoint *)object).UUIDString];
     }
     return NO;
 }
@@ -55,7 +63,18 @@
 {
     DelaunayPoint *copy = [[DelaunayPoint pointAtX:self.x andY:self.y withUUID:self.UUIDString] retain];
     copy.contribution = self.contribution;
+    copy.value = self.value;
     return copy;
+}
+
+- (NSMutableSet *)edges
+{
+    return (NSMutableSet *)nonretainingEdges;
+}
+
+- (void)setEdges:(NSMutableSet *)edges
+{
+    nonretainingEdges = CFSetCreateMutableCopy(NULL, [edges count], (CFMutableSetRef)edges);
 }
 
 - (NSArray *)counterClockwiseEdges

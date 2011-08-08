@@ -13,19 +13,22 @@
 
 
 @implementation DelaunayTriangle
-@synthesize edges;
 @synthesize startPoint;
 @synthesize color;
 
 + (DelaunayTriangle *) triangleWithEdges:(NSArray *)edges andStartPoint:(DelaunayPoint *)startPoint;
 {
     DelaunayTriangle *triangle = [[[self alloc] init] autorelease];
+    
     triangle.edges = edges;
-    triangle.startPoint = startPoint;
+    
     for (DelaunayEdge *edge in edges)
     {
         [edge.triangles addObject:triangle];
     }
+    
+    triangle.startPoint = startPoint;
+
     triangle.color = [UIColor colorWithRed:(float)rand() / RAND_MAX
                                      green:(float)rand() / RAND_MAX
                                       blue:(float)rand() / RAND_MAX
@@ -33,17 +36,36 @@
     return triangle;
 }
 
+- (void)dealloc
+{
+    [color release];
+    CFRelease(nonretainingEdges);
+    [super dealloc];
+}
+
 - (BOOL)isEqual:(id)object
 {
     if ([object isKindOfClass:[self class]])
     {
-        return [[NSSet setWithArray:self.edges] isEqualToSet:[NSSet setWithArray:((DelaunayTriangle*)object).edges]];
+        NSMutableSet *edgesSet = [NSMutableSet setWithArray:self.edges];
+        NSMutableSet *otherEdgesSet = [NSMutableSet setWithArray:((DelaunayTriangle *)object).edges];
+        return [edgesSet isEqualToSet:otherEdgesSet];
     }
     return NO;
 }
 - (NSUInteger)hash
 {
     return [[NSSet setWithArray:self.edges] hash];
+}
+
+- (NSArray *)edges
+{
+    return (NSArray *)nonretainingEdges;
+}
+
+- (void)setEdges:(NSArray *)edges
+{
+    nonretainingEdges = CFArrayCreateCopy(NULL, (CFArrayRef)edges);
 }
 
 - (BOOL)containsPoint:(DelaunayPoint *)point
@@ -114,7 +136,7 @@
 }
 
 - (NSSet *)neighbors
-{
+{    
     NSMutableSet *neighbors = [NSMutableSet setWithCapacity:3];
     for (DelaunayEdge *edge in self.edges)
     {
@@ -127,17 +149,17 @@
 
 - (DelaunayPoint *)pointNotInEdge:(DelaunayEdge *)edge
 {
-    if (edge == [self.edges objectAtIndex:0])
-        return [((DelaunayEdge *)[self.edges objectAtIndex:2]) otherPoint:self.startPoint];
-    else if (edge == [self.edges objectAtIndex:1])
-        return self.startPoint;
-    else if (edge == [self.edges objectAtIndex:2])
-        return [((DelaunayEdge *)[self.edges objectAtIndex:0]) otherPoint:self.startPoint];
-    else
+    NSMutableSet *pointsSet = [NSMutableSet setWithArray:self.points];
+    NSSet *edgePointsSet = [NSSet setWithArray:edge.points];
+    [pointsSet minusSet:edgePointsSet];
+    
+    if ([pointsSet count] == 0)
     {
         NSLog(@"ASKED FOR POINT NOT IN EDGE THAT IS NOT IN THIS TRIANGLE");
         return nil;
     }
+    else
+        return [pointsSet anyObject];
 }
 
 - (DelaunayEdge *)edgeStartingWithPoint:(DelaunayPoint *)point

@@ -11,14 +11,14 @@
 
 @interface DelaunayPoint : NSObject <NSCopying> {
 
-    NSMutableSet *edges;
+    CFMutableSetRef nonretainingEdges;
     float contribution;
 }
 
 @property (nonatomic) float x;
 @property (nonatomic) float y;
 @property (nonatomic, retain) NSString *UUIDString;
-@property (nonatomic, retain) NSMutableSet *edges;
+@property (nonatomic, assign) NSMutableSet *edges;
 @property float contribution;
 @property (nonatomic, retain) id value;
 
