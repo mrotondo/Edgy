@@ -30,5 +30,6 @@
 - (void)enforceDelaunayProperty;
 - (NSDictionary*)voronoiCells;
 - (void)interpolateWeightsWithPoint:(DelaunayPoint *)point;
+- (void)print;
 
 @end

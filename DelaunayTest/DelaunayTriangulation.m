@@ -40,7 +40,7 @@
     DelaunayPoint *p1 = [DelaunayPoint pointAtX:-w / 2 andY:-h / 2];
     DelaunayPoint *p2 = [DelaunayPoint pointAtX:0 andY:h / 2];
     DelaunayPoint *p3 = [DelaunayPoint pointAtX:w / 2 andY:-h / 2];
-    
+
     DelaunayEdge *e1 = [DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:p1, p2, nil]];
     DelaunayEdge *e2 = [DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:p2, p3, nil]];
     DelaunayEdge *e3 = [DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:p3, p1, nil]];
@@ -103,7 +103,7 @@
         DelaunayEdge *e1 = [edgeCopies member:[triangle.edges objectAtIndex:0]];
         DelaunayEdge *e2 = [edgeCopies member:[triangle.edges objectAtIndex:1]];
         DelaunayEdge *e3 = [edgeCopies member:[triangle.edges objectAtIndex:2]];
-        DelaunayTriangle *triangleCopy = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:e1, e2, e3, nil] andStartPoint:triangle.startPoint];
+        DelaunayTriangle *triangleCopy = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:e1, e2, e3, nil] andStartPoint:[pointCopies member:triangle.startPoint]];
         triangleCopy.color = triangle.color;
         [triangleCopies addObject:triangleCopy];
     }
@@ -121,6 +121,15 @@
     return dt;
 }
 
+- (void)print
+{
+    for (DelaunayTriangle *triangle in self.triangles)
+    {
+        [triangle print];
+        NSLog(@"---");
+    }
+}
+
 - (void)removeTriangle:(DelaunayTriangle *)triangle
 {
     [triangle remove];
@@ -133,6 +142,7 @@
     DelaunayTriangle * triangle = [[[self triangleContainingPoint:newPoint] retain] autorelease];
     if (triangle != nil)
     {
+        
         [self.points addObject:newPoint];
         
         [self removeTriangle:triangle];
@@ -252,7 +262,6 @@
 
 - (NSDictionary*)voronoiCells
 {
-    NSLog(@"WHAT WHAT");
     NSMutableDictionary *cells = [NSMutableDictionary dictionary];
     for (DelaunayPoint *point in self.points)
     {
@@ -260,16 +269,11 @@
         if ([self.frameTrianglePoints containsObject:point])
             continue;
         
-        NSLog(@"Point is at %f, %f", point.x, point.y);
-        
         NSArray *pointEdges = [point counterClockwiseEdges];
         NSMutableArray *nodes = [NSMutableArray arrayWithCapacity:[pointEdges count]];
         DelaunayEdge *prevEdge = [pointEdges lastObject];
         for (DelaunayEdge *edge in pointEdges)
         {
-            DelaunayPoint *otherPoint = [edge otherPoint:point];
-            NSLog(@"Other end of edge is at %f, %f", otherPoint.x, otherPoint.y);
-            
             DelaunayTriangle *sharedTriangle = [edge sharedTriangleWithEdge:prevEdge];
             [nodes addObject:[NSValue valueWithCGPoint:[sharedTriangle circumcenter]]];
             prevEdge = edge;
@@ -282,15 +286,12 @@
 
 - (void)interpolateWeightsWithPoint:(DelaunayPoint *)point
 {
-    DelaunayTriangulation *testTriangulation = [[self copy] autorelease];
+    DelaunayTriangulation *testTriangulation = [self copy];//[[self copy] autorelease];
     BOOL added = [testTriangulation addPoint:point];
     // TODO(mrotondo): Special-case touches right on top of existing points here.
     if (added)
     {
         NSDictionary *voronoiCells = [self voronoiCells];
-        
-        NSLog(@"HIIII");
-        
         // TODO(mrotondo): Interpolate by adding and removing a point instead of copying the whole triangulation
         NSDictionary *testVoronoiCells = [testTriangulation voronoiCells];
         float fractionSum = 0.0;

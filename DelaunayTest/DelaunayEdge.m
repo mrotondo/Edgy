@@ -45,16 +45,27 @@
 {
     if ([object isKindOfClass:[self class]])
     {
-        NSSet *pointsSet = [NSSet setWithArray:self.points];
-        NSSet *otherPointsSet = [NSSet setWithArray:((DelaunayEdge *)object).points];
-        return [pointsSet isEqualToSet:otherPointsSet];
+        DelaunayEdge *otherEdge = object;
+        return ([((DelaunayPoint*)[self.points objectAtIndex:0]).UUIDString isEqualToString:((DelaunayPoint*)[otherEdge.points objectAtIndex:0]).UUIDString] && 
+                [((DelaunayPoint*)[self.points objectAtIndex:1]).UUIDString isEqualToString:((DelaunayPoint*)[otherEdge.points objectAtIndex:1]).UUIDString]);
     }
     return NO;
 }
 - (NSUInteger)hash
 {
-    NSSet *pointsSet = [NSSet setWithArray:self.points];
-    return [pointsSet hash];
+    // I'm assuming that xor is a good "unique combination" operator here. Hopefully that assumption holds up.
+    return [((DelaunayPoint*)[self.points objectAtIndex:0]).UUIDString hash] ^ [((DelaunayPoint*)[self.points objectAtIndex:1]).UUIDString hash];
+
+}
+
+- (void)print
+{
+    NSLog(@"Edge (%p)", self);
+    for (DelaunayPoint *point in self.points)
+    {
+        [point printRecursive:NO];
+        NSLog(@"~~~");
+    }
 }
 
 - (NSMutableSet *)triangles

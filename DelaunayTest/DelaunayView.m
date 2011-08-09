@@ -67,13 +67,13 @@
 //    }
 
     // Draw the voronoi cells
-//    NSDictionary *voronoiCells = [self.triangulation voronoiCells];    
-//    for (VoronoiCell *cell in [voronoiCells objectEnumerator])
-//    {
-//        [[UIColor colorWithWhite:cell.site.contribution alpha:0.5] set];
-//        [cell drawInContext:ctx];
-//        CGContextFillPath(ctx);
-//    }
+    NSDictionary *voronoiCells = [self.triangulation voronoiCells];    
+    for (VoronoiCell *cell in [voronoiCells objectEnumerator])
+    {
+        [[UIColor colorWithWhite:cell.site.contribution alpha:0.5] set];
+        [cell drawInContext:ctx];
+        CGContextFillPath(ctx);
+    }
 }
 
 - (void)dealloc

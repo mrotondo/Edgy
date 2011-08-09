@@ -47,15 +47,35 @@
 {
     if ([object isKindOfClass:[self class]])
     {
-        NSMutableSet *edgesSet = [NSMutableSet setWithArray:self.edges];
-        NSMutableSet *otherEdgesSet = [NSMutableSet setWithArray:((DelaunayTriangle *)object).edges];
-        return [edgesSet isEqualToSet:otherEdgesSet];
+        DelaunayTriangle *otherTriangle = object;
+        return ([(DelaunayEdge *)[self.edges objectAtIndex:0] isEqual:(DelaunayEdge *)[otherTriangle.edges objectAtIndex:0]] &&
+                [(DelaunayEdge *)[self.edges objectAtIndex:1] isEqual:(DelaunayEdge *)[otherTriangle.edges objectAtIndex:1]] &&
+                [(DelaunayEdge *)[self.edges objectAtIndex:2] isEqual:(DelaunayEdge *)[otherTriangle.edges objectAtIndex:2]]);
     }
     return NO;
 }
 - (NSUInteger)hash
 {
-    return [[NSSet setWithArray:self.edges] hash];
+    // I'm assuming that xor is a good "unique combination" operator here. Hopefully that assumption holds up.
+    return ([(DelaunayEdge *)[self.edges objectAtIndex:0] hash] ^
+            [(DelaunayEdge *)[self.edges objectAtIndex:1] hash] ^
+            [(DelaunayEdge *)[self.edges objectAtIndex:2] hash]);
+}
+
+- (void)print
+{
+    NSLog(@"Triangle (%p)", self);
+    DelaunayPoint *edgeStartPoint = self.startPoint;
+    for (DelaunayEdge *edge in self.edges)
+    {
+        NSLog(@"START POINT: ");
+        [edgeStartPoint printRecursive:NO];
+        
+        [edge print];
+        NSLog(@"-------------------");
+        
+        edgeStartPoint = [edge otherPoint:edgeStartPoint];
+    }
 }
 
 - (NSArray *)edges

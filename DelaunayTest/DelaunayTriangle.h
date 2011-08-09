@@ -39,4 +39,6 @@
 - (BOOL)isEqual:(id)object;
 - (NSUInteger)hash;
 
+- (void)print;
+
 @end

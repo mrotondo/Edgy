@@ -29,4 +29,6 @@
 - (BOOL)isEqual:(id)object;
 - (NSUInteger)hash;
 
+- (void)printRecursive:(BOOL)recursive;
+
 @end

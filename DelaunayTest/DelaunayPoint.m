@@ -67,6 +67,21 @@
     return copy;
 }
 
+- (void)printRecursive:(BOOL)recursive
+{
+    NSLog(@"Point %@ (%p) at %f, %f", self.UUIDString, self, self.x, self.y);
+    if (recursive)
+    {
+        NSLog(@"I'm connected to these points in counter-clockwise order:");
+        DelaunayPoint *otherPoint;
+        for (DelaunayEdge *edge in [self counterClockwiseEdges])
+        {
+            otherPoint = [edge otherPoint:self];
+            [otherPoint printRecursive:NO];
+        }
+    }
+}
+
 - (NSMutableSet *)edges
 {
     return (NSMutableSet *)nonretainingEdges;
