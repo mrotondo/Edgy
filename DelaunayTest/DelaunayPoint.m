@@ -15,6 +15,7 @@
 @synthesize UUIDString;
 @synthesize contribution;
 @synthesize value;
+@synthesize color;
 
 + (DelaunayPoint *)pointAtX:(float)newX andY:(float)newY
 {
@@ -34,6 +35,10 @@
     point.UUIDString = UUIDString;
     point.edges = [NSMutableSet set];
     point.contribution = 0.0;
+    point.color = [UIColor colorWithRed:(float)rand() / RAND_MAX
+                                  green:(float)rand() / RAND_MAX
+                                   blue:(float)rand() / RAND_MAX
+                                  alpha:1.0];
     return point;
 }
 

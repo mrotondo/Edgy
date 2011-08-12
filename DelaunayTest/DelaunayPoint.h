@@ -13,6 +13,7 @@
 
     CFMutableSetRef nonretainingEdges;
     float contribution;
+    UIColor *color;
 }
 
 @property (nonatomic) float x;
@@ -21,6 +22,7 @@
 @property (nonatomic, assign) NSMutableSet *edges;
 @property float contribution;
 @property (nonatomic, retain) id value;
+@property (nonatomic, retain) UIColor *color;
 
 + (DelaunayPoint *) pointAtX:(float)x andY:(float)y;
 + (DelaunayPoint *)pointAtX:(float)newX andY:(float)newY withUUID:(NSString *)uuid;
