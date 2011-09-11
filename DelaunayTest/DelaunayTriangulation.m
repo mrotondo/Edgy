@@ -64,22 +64,8 @@
     [super dealloc];
 }
 
-//- (id)copyWithZone:(NSZone *)zone
-//{
-//    // TODO(mrotondo): Implement this in maybe any other way than the least efficient way possible?! That is, copy over the actual structures instead of re-computing all the triangles & flips etc.
-//    DelaunayTriangulation *dt = [[DelaunayTriangulation triangulation] retain];
-//    for ( DelaunayPoint *point in self.points )
-//    {
-//        if ( [self.frameTrianglePoints containsObject:point] )
-//            continue;
-//        [dt addPoint:[DelaunayPoint pointAtX:point.x andY:point.y withUUID:point.UUIDString]];
-//    }
-//    return dt;
-//}
-
 - (id)copyWithZone:(NSZone *)zone
 {
-    // TODO(mrotondo): Implement this in maybe any other way than the least efficient way possible?! That is, copy over the actual structures instead of re-computing all the triangles & flips etc.
     DelaunayTriangulation *dt = [[DelaunayTriangulation alloc] init];
     
     NSMutableSet *triangleCopies = [NSMutableSet setWithCapacity: [self.triangles count]];
@@ -212,29 +198,30 @@
                 if (neighborTriangle != nil)
                 {
                     // Find the non-shared point in the other triangle
-                    DelaunayPoint *nonSharedPoint = [neighborTriangle pointNotInEdge:sharedEdge];
-                    if (sqrtf(powf(nonSharedPoint.x - circumcenter.x, 2) + powf(nonSharedPoint.y - circumcenter.y, 2)) < radius )
+                    DelaunayPoint *ourNonSharedPoint = [triangle pointNotInEdge:sharedEdge];
+                    DelaunayPoint *theirNonSharedPoint = [neighborTriangle pointNotInEdge:sharedEdge];
+                    if (sqrtf(powf(theirNonSharedPoint.x - circumcenter.x, 2) + powf(theirNonSharedPoint.y - circumcenter.y, 2)) < radius )
                     {
                         // If the non-shared point is within the circumcircle of this triangle, flip to share the other two points
                         [trianglesToRemove addObject:triangle];
                         [trianglesToRemove addObject:neighborTriangle];
 
                         // Get the edges before & after the shared edge in the triangle
-                        DelaunayEdge *beforeEdge = [triangle edgeStartingWithPoint:[triangle pointNotInEdge:sharedEdge]];
-                        DelaunayEdge *afterEdge = [triangle edgeEndingWithPoint:[triangle pointNotInEdge:sharedEdge]];
+                        DelaunayEdge *beforeEdge = [triangle edgeStartingWithPoint:ourNonSharedPoint];
+                        DelaunayEdge *afterEdge = [triangle edgeEndingWithPoint:ourNonSharedPoint];
 
-                        DelaunayEdge *newEdge = [DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:nonSharedPoint, [triangle pointNotInEdge:sharedEdge], nil]];
+                        DelaunayEdge *newEdge = [DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:theirNonSharedPoint, ourNonSharedPoint, nil]];
                         [self.edges addObject:newEdge];
 
                         // Get the edges before & after the shared edge in the neighbor triangle
-                        DelaunayEdge *neighborBeforeEdge = [neighborTriangle edgeStartingWithPoint:[neighborTriangle pointNotInEdge:sharedEdge]];
-                        DelaunayEdge *neighborAfterEdge = [neighborTriangle edgeEndingWithPoint:[neighborTriangle pointNotInEdge:sharedEdge]];
+                        DelaunayEdge *neighborBeforeEdge = [neighborTriangle edgeStartingWithPoint:theirNonSharedPoint];
+                        DelaunayEdge *neighborAfterEdge = [neighborTriangle edgeEndingWithPoint:theirNonSharedPoint];
                         
                         DelaunayTriangle *newTriangle1 = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:newEdge, beforeEdge, neighborAfterEdge, nil]
-                                                                               andStartPoint:nonSharedPoint ];
+                                                                               andStartPoint:theirNonSharedPoint ];
                         
                         DelaunayTriangle *newTriangle2 = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:neighborBeforeEdge, afterEdge, newEdge, nil]
-                                                                               andStartPoint:nonSharedPoint];
+                                                                               andStartPoint:theirNonSharedPoint];
                         
                         [trianglesToAdd addObject:newTriangle1];
                         [trianglesToAdd addObject:newTriangle2];
