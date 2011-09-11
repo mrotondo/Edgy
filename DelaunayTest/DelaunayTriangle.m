@@ -15,6 +15,7 @@
 @implementation DelaunayTriangle
 @synthesize startPoint;
 @synthesize color;
+@synthesize cachedPoints;
 
 + (DelaunayTriangle *) triangleWithEdges:(NSArray *)edges andStartPoint:(DelaunayPoint *)startPoint;
 {
@@ -33,6 +34,9 @@
                                      green:(float)rand() / RAND_MAX
                                       blue:(float)rand() / RAND_MAX
                                      alpha:1.0];
+    
+    triangle.cachedPoints = nil;
+    
     return triangle;
 }
 
@@ -145,6 +149,9 @@
 
 - (NSArray *)points
 {
+    if ( self.cachedPoints )
+        return self.cachedPoints;
+    
     NSMutableArray *points = [NSMutableArray arrayWithCapacity:3];
     DelaunayPoint *edgeStartPoint = self.startPoint;
     for (DelaunayEdge *edge in self.edges)
@@ -152,6 +159,7 @@
         [points insertObject:edgeStartPoint atIndex:[points count]];
         edgeStartPoint = [edge otherPoint:edgeStartPoint];
     }
+    self.cachedPoints = points;
     return points;
 }
 
