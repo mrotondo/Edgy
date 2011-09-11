@@ -177,17 +177,18 @@
 
 - (DelaunayPoint *)pointNotInEdge:(DelaunayEdge *)edge
 {
-    NSMutableSet *pointsSet = [NSMutableSet setWithArray:self.points];
-    NSSet *edgePointsSet = [NSSet setWithArray:edge.points];
-    [pointsSet minusSet:edgePointsSet];
+    DelaunayPoint *p1 = [edge.points objectAtIndex:0];
+    DelaunayPoint *p2 = [edge.points objectAtIndex:1];
     
-    if ([pointsSet count] == 0)
+    for ( DelaunayPoint *p in self.points )
     {
-        NSLog(@"ASKED FOR POINT NOT IN EDGE THAT IS NOT IN THIS TRIANGLE");
-        return nil;
+        if ( ![p isEqual:p1] && ![p  isEqual:p2] )
+        {            
+            return p;
+        }
     }
-    else
-        return [pointsSet anyObject];
+    NSLog(@"ASKED FOR POINT NOT IN EDGE THAT IS NOT IN THIS TRIANGLE");
+    return nil;
 }
 
 - (DelaunayEdge *)edgeStartingWithPoint:(DelaunayPoint *)point
