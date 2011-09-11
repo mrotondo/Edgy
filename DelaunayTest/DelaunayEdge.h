@@ -25,6 +25,7 @@
 - (DelaunayPoint *)otherPoint:(DelaunayPoint *)point;
 - (BOOL)pointOnLeft:(DelaunayPoint*)point withStartPoint:(DelaunayPoint *)startPoint;
 - (DelaunayTriangle *)sharedTriangleWithEdge:(DelaunayEdge *)otherEdge;
+- (float)length;
 - (void)remove;
 
 - (BOOL)isEqual:(id)object;
