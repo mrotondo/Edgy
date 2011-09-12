@@ -24,7 +24,7 @@
 @property (nonatomic, retain) NSArray *cachedPoints;
 @property (nonatomic, readonly) NSArray *points;
 
-+ (DelaunayTriangle *) triangleWithEdges:(NSArray *)edges andStartPoint:(DelaunayPoint *)startPoint;
++ (DelaunayTriangle *) triangleWithEdges:(NSArray *)edges andStartPoint:(DelaunayPoint *)startPoint andColor:(UIColor *)color;
 - (BOOL)containsPoint:(DelaunayPoint *)point;
 - (CGPoint)circumcenter;
 - (BOOL)inFrameTriangleOfTriangulation:(DelaunayTriangulation *)triangulation;

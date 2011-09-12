@@ -17,7 +17,7 @@
 @synthesize color;
 @synthesize cachedPoints;
 
-+ (DelaunayTriangle *) triangleWithEdges:(NSArray *)edges andStartPoint:(DelaunayPoint *)startPoint;
++ (DelaunayTriangle *) triangleWithEdges:(NSArray *)edges andStartPoint:(DelaunayPoint *)startPoint andColor:(UIColor *)color
 {
     DelaunayTriangle *triangle = [[[self alloc] init] autorelease];
     
@@ -30,10 +30,11 @@
     
     triangle.startPoint = startPoint;
 
-    triangle.color = [UIColor colorWithRed:(float)rand() / RAND_MAX
-                                     green:(float)rand() / RAND_MAX
-                                      blue:(float)rand() / RAND_MAX
-                                     alpha:1.0];
+    triangle.color = color;
+//    triangle.color = [UIColor colorWithRed:(float)rand() / RAND_MAX
+//                                     green:(float)rand() / RAND_MAX
+//                                      blue:(float)rand() / RAND_MAX
+//                                     alpha:1.0];
     
     triangle.cachedPoints = nil;
     

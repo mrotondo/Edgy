@@ -22,6 +22,7 @@
 @property (nonatomic, retain) NSMutableSet *edges;
 @property (nonatomic, retain) NSMutableSet *triangles;
 @property (nonatomic, retain) NSSet *frameTrianglePoints;
+@property (nonatomic, retain) NSArray *colors;
 
 + (DelaunayTriangulation *)triangulation;
 + (DelaunayTriangulation *)triangulationWithSize:(CGSize)size;
