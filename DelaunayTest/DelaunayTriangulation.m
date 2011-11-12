@@ -23,6 +23,7 @@
 @synthesize edges;
 @synthesize triangles;
 @synthesize frameTrianglePoints;
+@synthesize colors;
 
 + (DelaunayTriangulation *)triangulation
 {
@@ -45,7 +46,10 @@
     DelaunayEdge *e2 = [DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:p2, p3, nil]];
     DelaunayEdge *e3 = [DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:p3, p1, nil]];
     
-    DelaunayTriangle *triangle = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:e1, e2, e3, nil] andStartPoint:p1];
+    dt.colors = [NSArray arrayWithObjects:[UIColor redColor], [UIColor greenColor], [UIColor blueColor], nil];
+    
+    UIColor *color = [dt.colors objectAtIndex:arc4random() % [dt.colors count]];
+    DelaunayTriangle *triangle = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:e1, e2, e3, nil] andStartPoint:p1 andColor:color];
     dt.frameTrianglePoints = [NSSet setWithObjects:p1, p2, p3, nil];
     
     dt.triangles = [NSMutableSet setWithObject:triangle];
@@ -64,22 +68,8 @@
     [super dealloc];
 }
 
-//- (id)copyWithZone:(NSZone *)zone
-//{
-//    // TODO(mrotondo): Implement this in maybe any other way than the least efficient way possible?! That is, copy over the actual structures instead of re-computing all the triangles & flips etc.
-//    DelaunayTriangulation *dt = [[DelaunayTriangulation triangulation] retain];
-//    for ( DelaunayPoint *point in self.points )
-//    {
-//        if ( [self.frameTrianglePoints containsObject:point] )
-//            continue;
-//        [dt addPoint:[DelaunayPoint pointAtX:point.x andY:point.y withUUID:point.UUIDString]];
-//    }
-//    return dt;
-//}
-
 - (id)copyWithZone:(NSZone *)zone
 {
-    // TODO(mrotondo): Implement this in maybe any other way than the least efficient way possible?! That is, copy over the actual structures instead of re-computing all the triangles & flips etc.
     DelaunayTriangulation *dt = [[DelaunayTriangulation alloc] init];
     
     NSMutableSet *triangleCopies = [NSMutableSet setWithCapacity: [self.triangles count]];
@@ -103,7 +93,7 @@
         DelaunayEdge *e1 = [edgeCopies member:[triangle.edges objectAtIndex:0]];
         DelaunayEdge *e2 = [edgeCopies member:[triangle.edges objectAtIndex:1]];
         DelaunayEdge *e3 = [edgeCopies member:[triangle.edges objectAtIndex:2]];
-        DelaunayTriangle *triangleCopy = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:e1, e2, e3, nil] andStartPoint:[pointCopies member:triangle.startPoint]];
+        DelaunayTriangle *triangleCopy = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:e1, e2, e3, nil] andStartPoint:[pointCopies member:triangle.startPoint] andColor:triangle.color];
         triangleCopy.color = triangle.color;
         [triangleCopies addObject:triangleCopy];
     }
@@ -163,9 +153,15 @@
         [self.edges addObject:new3];
         
         // Use start point and counter-clockwise ordered edges to enforce counter-clockwiseness in point-containment checking
-        DelaunayTriangle * e1Triangle = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:new1, e1, new2, nil] andStartPoint:newPoint];
-        DelaunayTriangle * e2Triangle = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:new2, e2, new3, nil] andStartPoint:newPoint];
-        DelaunayTriangle * e3Triangle = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:new3, e3, new1, nil] andStartPoint:newPoint];
+        DelaunayTriangle * e1Triangle = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:new1, e1, new2, nil]
+                                                              andStartPoint:newPoint 
+                                                                   andColor:[self.colors objectAtIndex:arc4random() % [self.colors count]]];
+        DelaunayTriangle * e2Triangle = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:new2, e2, new3, nil]
+                                                              andStartPoint:newPoint
+                                                                   andColor:[self.colors objectAtIndex:arc4random() % [self.colors count]]];
+        DelaunayTriangle * e3Triangle = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:new3, e3, new1, nil]
+                                                              andStartPoint:newPoint
+                                                                   andColor:[self.colors objectAtIndex:arc4random() % [self.colors count]]];
         
         [self.triangles addObject:e1Triangle];        
         [self.triangles addObject:e2Triangle];        
@@ -212,29 +208,32 @@
                 if (neighborTriangle != nil)
                 {
                     // Find the non-shared point in the other triangle
-                    DelaunayPoint *nonSharedPoint = [neighborTriangle pointNotInEdge:sharedEdge];
-                    if (sqrtf(powf(nonSharedPoint.x - circumcenter.x, 2) + powf(nonSharedPoint.y - circumcenter.y, 2)) < radius )
+                    DelaunayPoint *ourNonSharedPoint = [triangle pointNotInEdge:sharedEdge];
+                    DelaunayPoint *theirNonSharedPoint = [neighborTriangle pointNotInEdge:sharedEdge];
+                    if (sqrtf(powf(theirNonSharedPoint.x - circumcenter.x, 2) + powf(theirNonSharedPoint.y - circumcenter.y, 2)) < radius )
                     {
                         // If the non-shared point is within the circumcircle of this triangle, flip to share the other two points
                         [trianglesToRemove addObject:triangle];
                         [trianglesToRemove addObject:neighborTriangle];
 
                         // Get the edges before & after the shared edge in the triangle
-                        DelaunayEdge *beforeEdge = [triangle edgeStartingWithPoint:[triangle pointNotInEdge:sharedEdge]];
-                        DelaunayEdge *afterEdge = [triangle edgeEndingWithPoint:[triangle pointNotInEdge:sharedEdge]];
+                        DelaunayEdge *beforeEdge = [triangle edgeStartingWithPoint:ourNonSharedPoint];
+                        DelaunayEdge *afterEdge = [triangle edgeEndingWithPoint:ourNonSharedPoint];
 
-                        DelaunayEdge *newEdge = [DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:nonSharedPoint, [triangle pointNotInEdge:sharedEdge], nil]];
+                        DelaunayEdge *newEdge = [DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:theirNonSharedPoint, ourNonSharedPoint, nil]];
                         [self.edges addObject:newEdge];
 
                         // Get the edges before & after the shared edge in the neighbor triangle
-                        DelaunayEdge *neighborBeforeEdge = [neighborTriangle edgeStartingWithPoint:[neighborTriangle pointNotInEdge:sharedEdge]];
-                        DelaunayEdge *neighborAfterEdge = [neighborTriangle edgeEndingWithPoint:[neighborTriangle pointNotInEdge:sharedEdge]];
+                        DelaunayEdge *neighborBeforeEdge = [neighborTriangle edgeStartingWithPoint:theirNonSharedPoint];
+                        DelaunayEdge *neighborAfterEdge = [neighborTriangle edgeEndingWithPoint:theirNonSharedPoint];
                         
                         DelaunayTriangle *newTriangle1 = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:newEdge, beforeEdge, neighborAfterEdge, nil]
-                                                                               andStartPoint:nonSharedPoint ];
+                                                                               andStartPoint:theirNonSharedPoint
+                                                                                    andColor:[self.colors objectAtIndex:arc4random() % [self.colors count]]];
                         
                         DelaunayTriangle *newTriangle2 = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:neighborBeforeEdge, afterEdge, newEdge, nil]
-                                                                               andStartPoint:nonSharedPoint];
+                                                                               andStartPoint:theirNonSharedPoint
+                                                                                    andColor:[self.colors objectAtIndex:arc4random() % [self.colors count]]];
                         
                         [trianglesToAdd addObject:newTriangle1];
                         [trianglesToAdd addObject:newTriangle2];

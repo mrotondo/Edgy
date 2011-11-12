@@ -15,8 +15,9 @@
 @implementation DelaunayTriangle
 @synthesize startPoint;
 @synthesize color;
+@synthesize cachedPoints;
 
-+ (DelaunayTriangle *) triangleWithEdges:(NSArray *)edges andStartPoint:(DelaunayPoint *)startPoint;
++ (DelaunayTriangle *) triangleWithEdges:(NSArray *)edges andStartPoint:(DelaunayPoint *)startPoint andColor:(UIColor *)color
 {
     DelaunayTriangle *triangle = [[[self alloc] init] autorelease];
     
@@ -29,10 +30,14 @@
     
     triangle.startPoint = startPoint;
 
-    triangle.color = [UIColor colorWithRed:(float)rand() / RAND_MAX
-                                     green:(float)rand() / RAND_MAX
-                                      blue:(float)rand() / RAND_MAX
-                                     alpha:1.0];
+    triangle.color = color;
+//    triangle.color = [UIColor colorWithRed:(float)rand() / RAND_MAX
+//                                     green:(float)rand() / RAND_MAX
+//                                      blue:(float)rand() / RAND_MAX
+//                                     alpha:1.0];
+    
+    triangle.cachedPoints = nil;
+    
     return triangle;
 }
 
@@ -145,6 +150,9 @@
 
 - (NSArray *)points
 {
+    if ( self.cachedPoints )
+        return self.cachedPoints;
+    
     NSMutableArray *points = [NSMutableArray arrayWithCapacity:3];
     DelaunayPoint *edgeStartPoint = self.startPoint;
     for (DelaunayEdge *edge in self.edges)
@@ -152,6 +160,7 @@
         [points insertObject:edgeStartPoint atIndex:[points count]];
         edgeStartPoint = [edge otherPoint:edgeStartPoint];
     }
+    self.cachedPoints = points;
     return points;
 }
 
@@ -169,17 +178,18 @@
 
 - (DelaunayPoint *)pointNotInEdge:(DelaunayEdge *)edge
 {
-    NSMutableSet *pointsSet = [NSMutableSet setWithArray:self.points];
-    NSSet *edgePointsSet = [NSSet setWithArray:edge.points];
-    [pointsSet minusSet:edgePointsSet];
+    DelaunayPoint *p1 = [edge.points objectAtIndex:0];
+    DelaunayPoint *p2 = [edge.points objectAtIndex:1];
     
-    if ([pointsSet count] == 0)
+    for ( DelaunayPoint *p in self.points )
     {
-        NSLog(@"ASKED FOR POINT NOT IN EDGE THAT IS NOT IN THIS TRIANGLE");
-        return nil;
+        if ( ![p isEqual:p1] && ![p  isEqual:p2] )
+        {            
+            return p;
+        }
     }
-    else
-        return [pointsSet anyObject];
+    NSLog(@"ASKED FOR POINT NOT IN EDGE THAT IS NOT IN THIS TRIANGLE");
+    return nil;
 }
 
 - (DelaunayEdge *)edgeStartingWithPoint:(DelaunayPoint *)point
