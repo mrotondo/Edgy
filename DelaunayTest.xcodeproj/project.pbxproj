@@ -228,6 +228,7 @@
 		D5E1766913D367E0009A2894 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = Stanford;
 			};
 			buildConfigurationList = D5E1766C13D367E0009A2894 /* Build configuration list for PBXProject "DelaunayTest" */;
