@@ -26,6 +26,7 @@
 
 + (DelaunayTriangulation *)triangulation;
 + (DelaunayTriangulation *)triangulationWithSize:(CGSize)size;
++ (DelaunayTriangulation *)triangulationWithRect:(CGRect)rect;
 - (BOOL)addPoint:(DelaunayPoint *)newPoint;
 - (DelaunayTriangle *)triangleContainingPoint:(DelaunayPoint *)point;
 - (void)enforceDelaunayProperty;
