@@ -21,7 +21,7 @@
 {
     CFUUIDRef UUIDRef = CFUUIDCreate(kCFAllocatorDefault);
     CFStringRef stringRef = CFUUIDCreateString(kCFAllocatorDefault, UUIDRef);
-    NSString *UUIDString = [(NSString *)stringRef autorelease];
+    NSString *UUIDString = (__bridge NSString *)stringRef;
     CFRelease(UUIDRef);
     DelaunayPoint *point = [DelaunayPoint pointAtX:newX andY:newY withUUID:UUIDString];
     return point;
@@ -29,11 +29,10 @@
 
 + (DelaunayPoint *)pointAtX:(float)newX andY:(float)newY withUUID:(NSString *)UUIDString
 {
-    DelaunayPoint *point = [[[self alloc] init] autorelease];
+    DelaunayPoint *point = [[self alloc] init];
     point.x = newX;
     point.y = newY;
     point.UUIDString = UUIDString;
-    point.edges = [NSMutableSet set];
     point.contribution = 0.0;
     point.color = [UIColor colorWithRed:(float)rand() / RAND_MAX
                                   green:(float)rand() / RAND_MAX
@@ -42,13 +41,19 @@
     return point;
 }
 
+- (id)init
+{
+    self = [super init];
+    if (self)
+    {
+        nonretainingEdges = CFSetCreateMutable(NULL, 2, NULL);
+    }
+    return self;
+}
+
 - (void)dealloc
 {
-    [UUIDString release];
     CFRelease(nonretainingEdges);
-    [value release];
-    
-    [super dealloc];
 }
 
 - (BOOL)isEqual:(id)object
@@ -66,7 +71,7 @@
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    DelaunayPoint *copy = [[DelaunayPoint pointAtX:self.x andY:self.y withUUID:self.UUIDString] retain];
+    DelaunayPoint *copy = [DelaunayPoint pointAtX:self.x andY:self.y withUUID:self.UUIDString];
     copy.contribution = self.contribution;
     copy.value = self.value;
     return copy;
@@ -89,12 +94,7 @@
 
 - (NSMutableSet *)edges
 {
-    return (NSMutableSet *)nonretainingEdges;
-}
-
-- (void)setEdges:(NSMutableSet *)edges
-{
-    nonretainingEdges = CFSetCreateMutableCopy(NULL, [edges count], (CFMutableSetRef)edges);
+    return (__bridge NSMutableSet *)nonretainingEdges;
 }
 
 - (NSArray *)counterClockwiseEdges

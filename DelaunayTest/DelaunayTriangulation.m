@@ -36,7 +36,7 @@
 
 + (DelaunayTriangulation *)triangulationWithRect:(CGRect)rect
 {
-    DelaunayTriangulation *dt = [[[self alloc] init] autorelease];
+    DelaunayTriangulation *dt = [[self alloc] init];
     
     // ADD FRAME TRIANGLE
     float w = rect.size.width;
@@ -62,14 +62,6 @@
     return dt;
 }
 
-- (void)dealloc
-{
-    [triangles release];
-    [edges release];
-    [points release];
-    [frameTrianglePoints release];
-    [super dealloc];
-}
 
 - (id)copyWithZone:(NSZone *)zone
 {
@@ -131,7 +123,7 @@
 - (BOOL)addPoint:(DelaunayPoint *)newPoint withColor:(UIColor *)color
 {
     // TODO(mrotondo): Mirror the points into the 8 surrounding regions to fix up interpolation around the edges.
-    DelaunayTriangle * triangle = [[[self triangleContainingPoint:newPoint] retain] autorelease];
+    DelaunayTriangle * triangle = [self triangleContainingPoint:newPoint];
     if (triangle != nil)
     {
         

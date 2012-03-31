@@ -13,8 +13,8 @@
     DelaunayTriangulation *triangulation;
 }
 
-@property (nonatomic, retain) DelaunayTriangulation *triangulation;
-@property (nonatomic, retain) IBOutlet UISwitch *interpaderpSwitch;
+@property (nonatomic, strong) DelaunayTriangulation *triangulation;
+@property (nonatomic, strong) IBOutlet UISwitch *interpaderpSwitch;
 @property BOOL interpolating;
 
 - (void) reset;

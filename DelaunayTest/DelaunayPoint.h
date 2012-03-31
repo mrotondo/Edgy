@@ -18,11 +18,11 @@
 
 @property (nonatomic) float x;
 @property (nonatomic) float y;
-@property (nonatomic, retain) NSString *UUIDString;
-@property (nonatomic, assign) NSMutableSet *edges;
+@property (nonatomic, strong) NSString *UUIDString;
+@property (nonatomic, readonly) NSMutableSet *edges;
 @property float contribution;
-@property (nonatomic, retain) id value;
-@property (nonatomic, retain) UIColor *color;
+@property (nonatomic, strong) id value;
+@property (nonatomic, strong) UIColor *color;
 
 + (DelaunayPoint *) pointAtX:(float)x andY:(float)y;
 + (DelaunayPoint *)pointAtX:(float)newX andY:(float)newY withUUID:(NSString *)uuid;

@@ -18,10 +18,10 @@
     NSMutableSet *triangles;
 }
 
-@property (nonatomic, retain) NSMutableSet *points;
-@property (nonatomic, retain) NSMutableSet *edges;
-@property (nonatomic, retain) NSMutableSet *triangles;
-@property (nonatomic, retain) NSSet *frameTrianglePoints;
+@property (nonatomic, strong) NSMutableSet *points;
+@property (nonatomic, strong) NSMutableSet *edges;
+@property (nonatomic, strong) NSMutableSet *triangles;
+@property (nonatomic, strong) NSSet *frameTrianglePoints;
 
 + (DelaunayTriangulation *)triangulation;
 + (DelaunayTriangulation *)triangulationWithSize:(CGSize)size;

@@ -15,8 +15,8 @@
     NSArray *nodes;
 }
 
-@property (nonatomic, retain) DelaunayPoint *site;
-@property (nonatomic, retain) NSArray *nodes;
+@property (nonatomic, strong) DelaunayPoint *site;
+@property (nonatomic, strong) NSArray *nodes;
 
 + (VoronoiCell *)voronoiCellAtSite:(DelaunayPoint *)site withNodes:(NSArray *)nodes;
 - (void)drawInContext:(CGContextRef)ctx;

@@ -14,6 +14,6 @@
 
 }
 
-@property (nonatomic, retain) DelaunayTriangulation* triangulation;
+@property (nonatomic, strong) DelaunayTriangulation* triangulation;
 
 @end

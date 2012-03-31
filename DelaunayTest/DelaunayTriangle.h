@@ -12,16 +12,11 @@
 @class DelaunayEdge;
 @class DelaunayTriangulation;
 
-@interface DelaunayTriangle : NSObject {
-    CFArrayRef nonretainingEdges;
-    DelaunayPoint *startPoint;
-    UIColor *color;
-}
+@interface DelaunayTriangle : NSObject
 
-@property (nonatomic, assign) NSArray *edges;
-@property (nonatomic, assign) DelaunayPoint *startPoint;
-@property (nonatomic, retain) UIColor *color;
-@property (nonatomic, retain) NSArray *cachedPoints;
+@property (nonatomic, readonly) NSArray *edges;
+@property (nonatomic, weak) DelaunayPoint *startPoint;
+@property (nonatomic, strong) UIColor *color;
 @property (nonatomic, readonly) NSArray *points;
 
 + (DelaunayTriangle *) triangleWithEdges:(NSArray *)edges andStartPoint:(DelaunayPoint *)startPoint andColor:(UIColor *)color;

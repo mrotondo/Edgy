@@ -20,7 +20,7 @@
 
 + (DelaunayEdge *)edgeWithPoints:(NSArray *)points
 {
-    DelaunayEdge *edge = [[[self alloc] init] autorelease];
+    DelaunayEdge *edge = [[self alloc] init];
     
     edge.points = points;
 
@@ -38,7 +38,6 @@
 {
     CFRelease(nonretainingPoints);
     CFRelease(nonretainingTriangles);
-    [super dealloc];
 }
 
 - (BOOL)isEqual:(id)object
@@ -70,20 +69,20 @@
 
 - (NSMutableSet *)triangles
 {
-    return (NSMutableSet *)nonretainingTriangles;
+    return (__bridge NSMutableSet *)nonretainingTriangles;
 }
 - (void)setTriangles:(NSMutableSet *)triangles
 {
-    nonretainingTriangles = CFSetCreateMutableCopy(NULL, 2, (CFMutableSetRef)triangles);
+    nonretainingTriangles = CFSetCreateMutableCopy(NULL, 2, (__bridge CFMutableSetRef)triangles);
 }
 
 - (NSArray *)points
 {
-    return (NSArray *)nonretainingPoints;
+    return (__bridge NSArray *)nonretainingPoints;
 }
 - (void)setPoints:(NSArray *)points
 {
-    nonretainingPoints = CFArrayCreateCopy(NULL, (CFArrayRef) points);
+    nonretainingPoints = CFArrayCreateCopy(NULL, (__bridge CFArrayRef) points);
 }
 
 - (DelaunayTriangle *)neighborOf:(DelaunayTriangle *)triangle

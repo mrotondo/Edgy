@@ -17,8 +17,8 @@
     CFArrayRef nonretainingPoints;
 }
 
-@property (nonatomic, assign) NSMutableSet *triangles;
-@property (nonatomic, assign) NSArray *points;
+@property (nonatomic, strong) NSMutableSet *triangles;
+@property (nonatomic, strong) NSArray *points;
 
 + (DelaunayEdge *)edgeWithPoints:(NSArray *)points;
 - (DelaunayTriangle *)neighborOf:(DelaunayTriangle *)triangle;

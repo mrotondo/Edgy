@@ -16,10 +16,6 @@
 @synthesize interpaderpSwitch;
 @synthesize interpolating;
 
-- (void)dealloc
-{
-    [super dealloc];
-}
 
 - (void)didReceiveMemoryWarning
 {

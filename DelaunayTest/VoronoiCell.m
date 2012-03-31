@@ -15,7 +15,7 @@
 
 + (VoronoiCell *)voronoiCellAtSite:(DelaunayPoint *)site withNodes:(NSArray *)nodes
 {
-    VoronoiCell *cell = [[[self alloc] init] autorelease];
+    VoronoiCell *cell = [[self alloc] init];
     
     cell.site = site;
     cell.nodes = nodes;
@@ -23,13 +23,6 @@
     return cell;
 }
 
-- (void)dealloc
-{
-    [site release];
-    [nodes release];
-    
-    [super dealloc];
-}
 
 - (void)drawInContext:(CGContextRef)ctx
 {

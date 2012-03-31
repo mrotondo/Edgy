@@ -13,14 +13,18 @@
 
 
 @implementation DelaunayTriangle
+{
+    CFArrayRef nonretainingEdges;
+    UIColor *color;
+    NSArray *cachedPoints;
+}
 @synthesize startPoint;
 @synthesize color;
-@synthesize cachedPoints;
 
 // If color is nil, a random color will be chosen
 + (DelaunayTriangle *) triangleWithEdges:(NSArray *)edges andStartPoint:(DelaunayPoint *)startPoint andColor:(UIColor *)color
 {
-    DelaunayTriangle *triangle = [[[self alloc] init] autorelease];
+    DelaunayTriangle *triangle = [[self alloc] init];
     
     triangle.edges = edges;
     
@@ -41,16 +45,12 @@
     }
     triangle.color = color;
     
-    triangle.cachedPoints = nil;
-    
     return triangle;
 }
 
 - (void)dealloc
 {
-    [color release];
     CFRelease(nonretainingEdges);
-    [super dealloc];
 }
 
 - (BOOL)isEqual:(id)object
@@ -90,12 +90,12 @@
 
 - (NSArray *)edges
 {
-    return (NSArray *)nonretainingEdges;
+    return (__bridge NSArray *)nonretainingEdges;
 }
 
 - (void)setEdges:(NSArray *)edges
 {
-    nonretainingEdges = CFArrayCreateCopy(NULL, (CFArrayRef)edges);
+    nonretainingEdges = CFArrayCreateCopy(NULL, (__bridge CFArrayRef)edges);
 }
 
 - (BOOL)containsPoint:(DelaunayPoint *)point
@@ -150,13 +150,13 @@
 
 - (BOOL)inFrameTriangleOfTriangulation:(DelaunayTriangulation *)triangulation
 {
-    return [[NSSet setWithArray: self.points] intersectsSet:triangulation.frameTrianglePoints];
+    return [[NSSet setWithArray:self.points] intersectsSet:triangulation.frameTrianglePoints];
 }
 
 - (NSArray *)points
 {
-    if ( self.cachedPoints )
-        return self.cachedPoints;
+    if (cachedPoints)
+        return cachedPoints;
     
     NSMutableArray *points = [NSMutableArray arrayWithCapacity:3];
     DelaunayPoint *edgeStartPoint = self.startPoint;
@@ -165,7 +165,7 @@
         [points insertObject:edgeStartPoint atIndex:[points count]];
         edgeStartPoint = [edge otherPoint:edgeStartPoint];
     }
-    self.cachedPoints = points;
+    cachedPoints = points;
     return points;
 }
 
