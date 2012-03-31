@@ -7,17 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D53F9DB513D7D17C0013CFB3 /* DelaunayEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = D53F9DB413D7D17C0013CFB3 /* DelaunayEdge.m */; };
-		D5763E3813D94CE7008B7BE3 /* VoronoiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5763E3713D94CE7008B7BE3 /* VoronoiCell.m */; };
+		D590C4461527BBC6007248F7 /* DelaunayEdge.h in Headers */ = {isa = PBXBuildFile; fileRef = D590C43C1527BBC6007248F7 /* DelaunayEdge.h */; };
+		D590C4471527BBC6007248F7 /* DelaunayEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = D590C43D1527BBC6007248F7 /* DelaunayEdge.m */; };
+		D590C4481527BBC6007248F7 /* DelaunayPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = D590C43E1527BBC6007248F7 /* DelaunayPoint.h */; };
+		D590C4491527BBC6007248F7 /* DelaunayPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D590C43F1527BBC6007248F7 /* DelaunayPoint.m */; };
+		D590C44A1527BBC6007248F7 /* DelaunayTriangle.h in Headers */ = {isa = PBXBuildFile; fileRef = D590C4401527BBC6007248F7 /* DelaunayTriangle.h */; };
+		D590C44B1527BBC6007248F7 /* DelaunayTriangle.m in Sources */ = {isa = PBXBuildFile; fileRef = D590C4411527BBC6007248F7 /* DelaunayTriangle.m */; };
+		D590C44C1527BBC6007248F7 /* DelaunayTriangulation.h in Headers */ = {isa = PBXBuildFile; fileRef = D590C4421527BBC6007248F7 /* DelaunayTriangulation.h */; };
+		D590C44D1527BBC6007248F7 /* DelaunayTriangulation.m in Sources */ = {isa = PBXBuildFile; fileRef = D590C4431527BBC6007248F7 /* DelaunayTriangulation.m */; };
+		D590C44E1527BBC6007248F7 /* VoronoiCell.h in Headers */ = {isa = PBXBuildFile; fileRef = D590C4441527BBC6007248F7 /* VoronoiCell.h */; };
+		D590C44F1527BBC6007248F7 /* VoronoiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D590C4451527BBC6007248F7 /* VoronoiCell.m */; };
+		D590C4501527BC06007248F7 /* libEdgy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5A55A1013EE19130001ADF7 /* libEdgy.a */; };
 		D5A55A1113EE19130001ADF7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E1767813D367E0009A2894 /* Foundation.framework */; };
-		D5A55A1913EE19630001ADF7 /* DelaunayTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E1768613D367E0009A2894 /* DelaunayTestAppDelegate.m */; };
-		D5A55A1A13EE19630001ADF7 /* DelaunayTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E1768C13D367E0009A2894 /* DelaunayTestViewController.m */; };
-		D5A55A1B13EE19630001ADF7 /* DelaunayView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E1769713D36805009A2894 /* DelaunayView.m */; };
-		D5A55A1C13EE19630001ADF7 /* DelaunayPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E1769A13D368BE009A2894 /* DelaunayPoint.m */; };
-		D5A55A1D13EE19630001ADF7 /* DelaunayEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = D53F9DB413D7D17C0013CFB3 /* DelaunayEdge.m */; };
-		D5A55A1E13EE19630001ADF7 /* DelaunayTriangle.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E1769D13D39554009A2894 /* DelaunayTriangle.m */; };
-		D5A55A1F13EE19630001ADF7 /* DelaunayTriangulation.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E176A013D39E7A009A2894 /* DelaunayTriangulation.m */; };
-		D5A55A2013EE19630001ADF7 /* VoronoiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5763E3713D94CE7008B7BE3 /* VoronoiCell.m */; };
 		D5E1767713D367E0009A2894 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E1767613D367E0009A2894 /* UIKit.framework */; };
 		D5E1767913D367E0009A2894 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E1767813D367E0009A2894 /* Foundation.framework */; };
 		D5E1767B13D367E0009A2894 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E1767A13D367E0009A2894 /* CoreGraphics.framework */; };
@@ -28,19 +29,32 @@
 		D5E1768D13D367E0009A2894 /* DelaunayTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E1768C13D367E0009A2894 /* DelaunayTestViewController.m */; };
 		D5E1769013D367E0009A2894 /* DelaunayTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5E1768E13D367E0009A2894 /* DelaunayTestViewController.xib */; };
 		D5E1769813D36805009A2894 /* DelaunayView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E1769713D36805009A2894 /* DelaunayView.m */; };
-		D5E1769B13D368BE009A2894 /* DelaunayPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E1769A13D368BE009A2894 /* DelaunayPoint.m */; };
-		D5E1769E13D39554009A2894 /* DelaunayTriangle.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E1769D13D39554009A2894 /* DelaunayTriangle.m */; };
-		D5E176A113D39E7A009A2894 /* DelaunayTriangulation.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E176A013D39E7A009A2894 /* DelaunayTriangulation.m */; };
 		D5E176A313D4DFE9009A2894 /* todo in Resources */ = {isa = PBXBuildFile; fileRef = D5E176A213D4DFE9009A2894 /* todo */; };
 		D5E8109B13EE267300C137FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E1767613D367E0009A2894 /* UIKit.framework */; };
 		D5E8109C13EE267300C137FF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E1767A13D367E0009A2894 /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D590C43A1527BB04007248F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5E1766913D367E0009A2894 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5A55A0F13EE19130001ADF7;
+			remoteInfo = Edgy;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		D53F9DB313D7D17C0013CFB3 /* DelaunayEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayEdge.h; sourceTree = "<group>"; };
-		D53F9DB413D7D17C0013CFB3 /* DelaunayEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayEdge.m; sourceTree = "<group>"; };
-		D5763E3613D94CE7008B7BE3 /* VoronoiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoronoiCell.h; sourceTree = "<group>"; };
-		D5763E3713D94CE7008B7BE3 /* VoronoiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoronoiCell.m; sourceTree = "<group>"; };
+		D590C43C1527BBC6007248F7 /* DelaunayEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayEdge.h; sourceTree = "<group>"; };
+		D590C43D1527BBC6007248F7 /* DelaunayEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayEdge.m; sourceTree = "<group>"; };
+		D590C43E1527BBC6007248F7 /* DelaunayPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayPoint.h; sourceTree = "<group>"; };
+		D590C43F1527BBC6007248F7 /* DelaunayPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayPoint.m; sourceTree = "<group>"; };
+		D590C4401527BBC6007248F7 /* DelaunayTriangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayTriangle.h; sourceTree = "<group>"; };
+		D590C4411527BBC6007248F7 /* DelaunayTriangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayTriangle.m; sourceTree = "<group>"; };
+		D590C4421527BBC6007248F7 /* DelaunayTriangulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayTriangulation.h; sourceTree = "<group>"; };
+		D590C4431527BBC6007248F7 /* DelaunayTriangulation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayTriangulation.m; sourceTree = "<group>"; };
+		D590C4441527BBC6007248F7 /* VoronoiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoronoiCell.h; sourceTree = "<group>"; };
+		D590C4451527BBC6007248F7 /* VoronoiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoronoiCell.m; sourceTree = "<group>"; };
 		D5A55A1013EE19130001ADF7 /* libEdgy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEdgy.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5A55A1413EE19130001ADF7 /* Edgy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Edgy-Prefix.pch"; sourceTree = "<group>"; };
 		D5E1767213D367E0009A2894 /* DelaunayTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DelaunayTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,12 +73,6 @@
 		D5E1768F13D367E0009A2894 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DelaunayTestViewController.xib; sourceTree = "<group>"; };
 		D5E1769613D36805009A2894 /* DelaunayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayView.h; sourceTree = "<group>"; };
 		D5E1769713D36805009A2894 /* DelaunayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayView.m; sourceTree = "<group>"; };
-		D5E1769913D368BE009A2894 /* DelaunayPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayPoint.h; sourceTree = "<group>"; };
-		D5E1769A13D368BE009A2894 /* DelaunayPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayPoint.m; sourceTree = "<group>"; };
-		D5E1769C13D39554009A2894 /* DelaunayTriangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayTriangle.h; sourceTree = "<group>"; };
-		D5E1769D13D39554009A2894 /* DelaunayTriangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayTriangle.m; sourceTree = "<group>"; };
-		D5E1769F13D39E7A009A2894 /* DelaunayTriangulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayTriangulation.h; sourceTree = "<group>"; };
-		D5E176A013D39E7A009A2894 /* DelaunayTriangulation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayTriangulation.m; sourceTree = "<group>"; };
 		D5E176A213D4DFE9009A2894 /* todo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D590C4501527BC06007248F7 /* libEdgy.a in Frameworks */,
 				D5E1767713D367E0009A2894 /* UIKit.framework in Frameworks */,
 				D5E1767913D367E0009A2894 /* Foundation.framework in Frameworks */,
 				D5E1767B13D367E0009A2894 /* CoreGraphics.framework in Frameworks */,
@@ -95,6 +104,16 @@
 		D5A55A1213EE19130001ADF7 /* Edgy */ = {
 			isa = PBXGroup;
 			children = (
+				D590C43C1527BBC6007248F7 /* DelaunayEdge.h */,
+				D590C43D1527BBC6007248F7 /* DelaunayEdge.m */,
+				D590C43E1527BBC6007248F7 /* DelaunayPoint.h */,
+				D590C43F1527BBC6007248F7 /* DelaunayPoint.m */,
+				D590C4401527BBC6007248F7 /* DelaunayTriangle.h */,
+				D590C4411527BBC6007248F7 /* DelaunayTriangle.m */,
+				D590C4421527BBC6007248F7 /* DelaunayTriangulation.h */,
+				D590C4431527BBC6007248F7 /* DelaunayTriangulation.m */,
+				D590C4441527BBC6007248F7 /* VoronoiCell.h */,
+				D590C4451527BBC6007248F7 /* VoronoiCell.m */,
 				D5A55A1313EE19130001ADF7 /* Supporting Files */,
 			);
 			path = Edgy;
@@ -149,16 +168,6 @@
 				D5E1769613D36805009A2894 /* DelaunayView.h */,
 				D5E1769713D36805009A2894 /* DelaunayView.m */,
 				D5E1767D13D367E0009A2894 /* Supporting Files */,
-				D5E1769913D368BE009A2894 /* DelaunayPoint.h */,
-				D5E1769A13D368BE009A2894 /* DelaunayPoint.m */,
-				D53F9DB313D7D17C0013CFB3 /* DelaunayEdge.h */,
-				D53F9DB413D7D17C0013CFB3 /* DelaunayEdge.m */,
-				D5E1769C13D39554009A2894 /* DelaunayTriangle.h */,
-				D5E1769D13D39554009A2894 /* DelaunayTriangle.m */,
-				D5E1769F13D39E7A009A2894 /* DelaunayTriangulation.h */,
-				D5E176A013D39E7A009A2894 /* DelaunayTriangulation.m */,
-				D5763E3613D94CE7008B7BE3 /* VoronoiCell.h */,
-				D5763E3713D94CE7008B7BE3 /* VoronoiCell.m */,
 				D5E176A213D4DFE9009A2894 /* todo */,
 			);
 			path = DelaunayTest;
@@ -182,6 +191,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D590C4461527BBC6007248F7 /* DelaunayEdge.h in Headers */,
+				D590C4481527BBC6007248F7 /* DelaunayPoint.h in Headers */,
+				D590C44A1527BBC6007248F7 /* DelaunayTriangle.h in Headers */,
+				D590C44C1527BBC6007248F7 /* DelaunayTriangulation.h in Headers */,
+				D590C44E1527BBC6007248F7 /* VoronoiCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +230,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				D590C43B1527BB04007248F7 /* PBXTargetDependency */,
 			);
 			name = DelaunayTest;
 			productName = DelaunayTest;
@@ -231,7 +246,7 @@
 				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = Stanford;
 			};
-			buildConfigurationList = D5E1766C13D367E0009A2894 /* Build configuration list for PBXProject "DelaunayTest" */;
+			buildConfigurationList = D5E1766C13D367E0009A2894 /* Build configuration list for PBXProject "Edgy" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -268,14 +283,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5A55A1913EE19630001ADF7 /* DelaunayTestAppDelegate.m in Sources */,
-				D5A55A1A13EE19630001ADF7 /* DelaunayTestViewController.m in Sources */,
-				D5A55A1B13EE19630001ADF7 /* DelaunayView.m in Sources */,
-				D5A55A1C13EE19630001ADF7 /* DelaunayPoint.m in Sources */,
-				D5A55A1D13EE19630001ADF7 /* DelaunayEdge.m in Sources */,
-				D5A55A1E13EE19630001ADF7 /* DelaunayTriangle.m in Sources */,
-				D5A55A1F13EE19630001ADF7 /* DelaunayTriangulation.m in Sources */,
-				D5A55A2013EE19630001ADF7 /* VoronoiCell.m in Sources */,
+				D590C4471527BBC6007248F7 /* DelaunayEdge.m in Sources */,
+				D590C4491527BBC6007248F7 /* DelaunayPoint.m in Sources */,
+				D590C44B1527BBC6007248F7 /* DelaunayTriangle.m in Sources */,
+				D590C44D1527BBC6007248F7 /* DelaunayTriangulation.m in Sources */,
+				D590C44F1527BBC6007248F7 /* VoronoiCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,15 +299,18 @@
 				D5E1768713D367E0009A2894 /* DelaunayTestAppDelegate.m in Sources */,
 				D5E1768D13D367E0009A2894 /* DelaunayTestViewController.m in Sources */,
 				D5E1769813D36805009A2894 /* DelaunayView.m in Sources */,
-				D5E1769B13D368BE009A2894 /* DelaunayPoint.m in Sources */,
-				D5E1769E13D39554009A2894 /* DelaunayTriangle.m in Sources */,
-				D5E176A113D39E7A009A2894 /* DelaunayTriangulation.m in Sources */,
-				D53F9DB513D7D17C0013CFB3 /* DelaunayEdge.m in Sources */,
-				D5763E3813D94CE7008B7BE3 /* VoronoiCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D590C43B1527BB04007248F7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5A55A0F13EE19130001ADF7 /* Edgy */;
+			targetProxy = D590C43A1527BB04007248F7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D5E1767F13D367E0009A2894 /* InfoPlist.strings */ = {
@@ -400,6 +415,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DelaunayTest/DelaunayTest-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = Edgy/;
 				INFOPLIST_FILE = "DelaunayTest/DelaunayTest-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -414,6 +430,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DelaunayTest/DelaunayTest-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = Edgy/;
 				INFOPLIST_FILE = "DelaunayTest/DelaunayTest-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
@@ -433,7 +450,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D5E1766C13D367E0009A2894 /* Build configuration list for PBXProject "DelaunayTest" */ = {
+		D5E1766C13D367E0009A2894 /* Build configuration list for PBXProject "Edgy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D5E1769113D367E0009A2894 /* Debug */,

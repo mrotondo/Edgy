@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:DelaunayTest.xcodeproj">
+      location = "self:Edgy.xcodeproj">
    </FileRef>
 </Workspace>
