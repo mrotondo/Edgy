@@ -31,15 +31,22 @@
 
 + (DelaunayTriangulation *)triangulationWithSize:(CGSize)size
 {
+    return [DelaunayTriangulation triangulationWithRect:CGRectMake(0, 0, size.width, size.height)];
+}
+
++ (DelaunayTriangulation *)triangulationWithRect:(CGRect)rect
+{
     DelaunayTriangulation *dt = [[[self alloc] init] autorelease];
     
     // ADD FRAME TRIANGLE
-    float w = size.width;
-    float h = size.height;
+    float w = rect.size.width;
+    float h = rect.size.height;
+    float x = rect.origin.x;
+    float y = rect.origin.y;
 
-    DelaunayPoint *p1 = [DelaunayPoint pointAtX:-w / 2 andY:-h / 2];
-    DelaunayPoint *p2 = [DelaunayPoint pointAtX:0 andY:h / 2];
-    DelaunayPoint *p3 = [DelaunayPoint pointAtX:w / 2 andY:-h / 2];
+    DelaunayPoint *p1 = [DelaunayPoint pointAtX:x andY:y];
+    DelaunayPoint *p2 = [DelaunayPoint pointAtX:x andY:h * 2];
+    DelaunayPoint *p3 = [DelaunayPoint pointAtX:w * 2 andY:y];
 
     DelaunayEdge *e1 = [DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:p1, p2, nil]];
     DelaunayEdge *e2 = [DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:p2, p3, nil]];

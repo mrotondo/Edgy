@@ -136,10 +136,9 @@
     float det = [self determinant:check];
     
     if (startPoint == p0)
-        return det < 0;
+        return det <= 0;
     else
-        return det > 0;
-        
+        return det >= 0;
 }
 
 - (DelaunayTriangle *)sharedTriangleWithEdge:(DelaunayEdge *)otherEdge
