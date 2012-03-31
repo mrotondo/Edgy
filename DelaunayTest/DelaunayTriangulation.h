@@ -22,11 +22,10 @@
 @property (nonatomic, retain) NSMutableSet *edges;
 @property (nonatomic, retain) NSMutableSet *triangles;
 @property (nonatomic, retain) NSSet *frameTrianglePoints;
-@property (nonatomic, retain) NSArray *colors;
 
 + (DelaunayTriangulation *)triangulation;
 + (DelaunayTriangulation *)triangulationWithSize:(CGSize)size;
-- (BOOL)addPoint:(DelaunayPoint *)newPoint;
+- (BOOL)addPoint:(DelaunayPoint *)newPoint withColor:(UIColor *)color;
 - (DelaunayTriangle *)triangleContainingPoint:(DelaunayPoint *)point;
 - (void)enforceDelaunayProperty;
 - (NSDictionary*)voronoiCells;
