@@ -17,6 +17,9 @@
 @end
 
 @implementation DelaunayEdge
+{
+    float cachedLength;
+}
 
 + (DelaunayEdge *)edgeWithPoints:(NSArray *)points
 {
@@ -189,9 +192,13 @@
 
 - (float)length
 {
+    if (cachedLength)
+        return cachedLength;
+    
     DelaunayPoint *p1 = [self.points objectAtIndex:0];
     DelaunayPoint *p2 = [self.points objectAtIndex:1];
-    return sqrtf(powf(p1.x - p2.x, 2) + powf(p1.y - p2.y, 2));
+    cachedLength = sqrtf(powf(p1.x - p2.x, 2) + powf(p1.y - p2.y, 2));
+    return cachedLength;
 }
 
 @end
