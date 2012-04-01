@@ -56,19 +56,6 @@
     CFRelease(nonretainingEdges);
 }
 
-- (BOOL)isEqual:(id)object
-{
-    if ([object isKindOfClass:[self class]])
-    {
-        return [self.UUIDString isEqualToString:((DelaunayPoint *)object).UUIDString];
-    }
-    return NO;
-}
-- (NSUInteger)hash
-{
-    return [self.UUIDString hash];
-}
-
 - (id)copyWithZone:(NSZone *)zone
 {
     DelaunayPoint *copy = [DelaunayPoint pointAtX:self.x andY:self.y withUUID:self.UUIDString];

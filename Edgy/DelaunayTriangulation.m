@@ -62,7 +62,6 @@
     return dt;
 }
 
-
 - (id)copyWithZone:(NSZone *)zone
 {
     DelaunayTriangulation *dt = [[DelaunayTriangulation alloc] init];
@@ -272,7 +271,7 @@
             prevEdge = edge;
         }
         //[cells addObject:[VoronoiCell voronoiCellAtSite:point withNodes:nodes]];
-        [cells setObject:[VoronoiCell voronoiCellAtSite:point withNodes:nodes] forKey:point];
+        [cells setObject:[VoronoiCell voronoiCellAtSite:point withNodes:nodes] forKey:point.UUIDString];
     }
     return cells;
 }
@@ -291,20 +290,20 @@
         NSMutableDictionary *fractions = [NSMutableDictionary dictionaryWithCapacity:[voronoiCells count]];
         for ( DelaunayPoint *point in [voronoiCells keyEnumerator] )
         {
-            VoronoiCell *cell = [voronoiCells objectForKey:point];
-            VoronoiCell *testCell = [testVoronoiCells objectForKey:point];
+            VoronoiCell *cell = [voronoiCells objectForKey:point.UUIDString];
+            VoronoiCell *testCell = [testVoronoiCells objectForKey:point.UUIDString];
             float fractionalChange = 0.0;
             if ( [cell area] > 0.0 )
                 fractionalChange = 1.0 - MAX(MIN([testCell area] / [cell area], 1.0), 0.0);
             fractionSum += fractionalChange;
-            [fractions setObject:[NSNumber numberWithFloat:fractionalChange] forKey:point];
+            [fractions setObject:[NSNumber numberWithFloat:fractionalChange] forKey:point.UUIDString];
         }
         if (fractionSum > 0.0)
         {
             for ( DelaunayPoint *point in [voronoiCells keyEnumerator] )
             {
-                VoronoiCell *cell = [voronoiCells objectForKey:point];
-                NSNumber *fractionalChange = [fractions objectForKey:point];
+                VoronoiCell *cell = [voronoiCells objectForKey:point.UUIDString];
+                NSNumber *fractionalChange = [fractions objectForKey:point.UUIDString];
                 cell.site.contribution = [fractionalChange floatValue] / fractionSum;
             }
         }

@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 
 
-@interface DelaunayPoint : NSObject <NSCopying> {
+@interface DelaunayPoint : NSObject <NSCopying>
+{
 
     CFMutableSetRef nonretainingEdges;
     float contribution;
     UIColor *color;
 }
-
 @property (nonatomic) float x;
 @property (nonatomic) float y;
 @property (nonatomic, strong) NSString *UUIDString;

@@ -48,15 +48,14 @@
     if ([object isKindOfClass:[self class]])
     {
         DelaunayEdge *otherEdge = object;
-        return ([((DelaunayPoint*)[self.points objectAtIndex:0]).UUIDString isEqualToString:((DelaunayPoint*)[otherEdge.points objectAtIndex:0]).UUIDString] && 
-                [((DelaunayPoint*)[self.points objectAtIndex:1]).UUIDString isEqualToString:((DelaunayPoint*)[otherEdge.points objectAtIndex:1]).UUIDString]);
+        return ([(DelaunayPoint*)[self.points objectAtIndex:0] isEqual:(DelaunayPoint*)[otherEdge.points objectAtIndex:0]] &&
+                [(DelaunayPoint*)[self.points objectAtIndex:1] isEqual:(DelaunayPoint*)[otherEdge.points objectAtIndex:1]]);
     }
     return NO;
 }
 - (NSUInteger)hash
 {
-    // I'm assuming that xor is a good "unique combination" operator here. Hopefully that assumption holds up.
-    return [((DelaunayPoint*)[self.points objectAtIndex:0]).UUIDString hash] ^ [((DelaunayPoint*)[self.points objectAtIndex:1]).UUIDString hash];
+    return [(DelaunayPoint*)[self.points objectAtIndex:0] hash] ^ [(DelaunayPoint*)[self.points objectAtIndex:1] hash];
 
 }
 
