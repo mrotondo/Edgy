@@ -17,6 +17,9 @@
     CFArrayRef nonretainingEdges;
     UIColor *color;
     NSArray *cachedPoints;
+    
+    NSMutableDictionary *startPointOfEdgeCache;
+    NSMutableDictionary *pointNotInEdgeCache;
 }
 @synthesize startPoint;
 @synthesize color;
@@ -46,6 +49,16 @@
     triangle.color = color;
     
     return triangle;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        startPointOfEdgeCache = [NSMutableDictionary dictionaryWithCapacity:3];
+        pointNotInEdgeCache = [NSMutableDictionary dictionaryWithCapacity:3];
+    }
+    return self;
 }
 
 - (void)dealloc
@@ -183,13 +196,20 @@
 
 - (DelaunayPoint *)pointNotInEdge:(DelaunayEdge *)edge
 {
+    DelaunayPoint *cachedResult = [pointNotInEdgeCache objectForKey:edge];
+    if (cachedResult)
+    {
+        return cachedResult;
+    }
+    
     DelaunayPoint *p1 = [edge.points objectAtIndex:0];
     DelaunayPoint *p2 = [edge.points objectAtIndex:1];
     
     for ( DelaunayPoint *p in self.points )
     {
         if ( ![p isEqual:p1] && ![p  isEqual:p2] )
-        {            
+        {
+            [pointNotInEdgeCache setObject:p forKey:edge];
             return p;
         }
     }
@@ -224,11 +244,18 @@
 
 - (DelaunayPoint *)startPointOfEdge:(DelaunayEdge *)edgeInQuestion
 {
+    DelaunayPoint *cachedResult = [startPointOfEdgeCache objectForKey:edgeInQuestion];
+    if (cachedResult)
+        return cachedResult;
+    
     DelaunayPoint *edgeStartPoint = self.startPoint;
     for (DelaunayEdge *edge in self.edges)
     {
         if (edge == edgeInQuestion)
+        {
+            [startPointOfEdgeCache setObject:edgeStartPoint forKey:edgeInQuestion];
             return edgeStartPoint;
+        }
         edgeStartPoint = [edge otherPoint:edgeStartPoint];
     }
     NSLog(@"ASKED FOR THE START POINT OF EDGE THAT IS NOT IN THIS TRIANGLE");

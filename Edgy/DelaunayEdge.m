@@ -59,6 +59,12 @@
 
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+    DelaunayEdge *copy = [DelaunayEdge edgeWithPoints:self.points];
+    return copy;
+}
+
 - (void)print
 {
     NSLog(@"Edge (%p)", self);
@@ -89,11 +95,11 @@
 
 - (DelaunayTriangle *)neighborOf:(DelaunayTriangle *)triangle
 {
-    if (![self.triangles containsObject:triangle])
-    {
-        NSLog(@"ASKED FOR THE NEIGHBOR OF A TRIANGLE THROUGH AN EDGE THAT DOESN'T BORDER THAT TRIANGLE!");
-        return nil;
-    }
+//    if (![self.triangles containsObject:triangle])
+//    {
+//        NSLog(@"ASKED FOR THE NEIGHBOR OF A TRIANGLE THROUGH AN EDGE THAT DOESN'T BORDER THAT TRIANGLE!");
+//        return nil;
+//    }
     
     // There should only ever be 2 triangles in self.triangles
     for (DelaunayTriangle *edgeTriangle in self.triangles)

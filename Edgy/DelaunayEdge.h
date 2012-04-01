@@ -11,7 +11,8 @@
 @class DelaunayTriangle;
 @class DelaunayPoint;
 
-@interface DelaunayEdge : NSObject {
+@interface DelaunayEdge : NSObject <NSCopying>
+{
     
     CFMutableSetRef nonretainingTriangles;
     CFArrayRef nonretainingPoints;
