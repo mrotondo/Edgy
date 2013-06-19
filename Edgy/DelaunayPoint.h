@@ -9,10 +9,8 @@
 #import <Foundation/Foundation.h>
 
 
-@interface DelaunayPoint : NSObject <NSCopying>
+@interface DelaunayPoint : NSObject
 {
-
-    CFMutableSetRef nonretainingEdges;
     float contribution;
     UIColor *color;
 }
@@ -28,9 +26,7 @@
 + (DelaunayPoint *)pointAtX:(float)newX andY:(float)newY withUUID:(NSString *)uuid;
 - (NSArray *)counterClockwiseEdges;
 
-- (BOOL)isEqual:(id)object;
-- (NSUInteger)hash;
-
-- (void)printRecursive:(BOOL)recursive;
+//- (BOOL)isEqual:(id)object;
+//- (NSUInteger)hash;
 
 @end

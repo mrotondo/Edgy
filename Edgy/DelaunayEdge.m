@@ -37,60 +37,32 @@
     return edge;
 }
 
-- (void)dealloc
-{
-    CFRelease(nonretainingPoints);
-    CFRelease(nonretainingTriangles);
-}
 
-- (BOOL)isEqual:(id)object
-{
-    if ([object isKindOfClass:[self class]])
-    {
-        DelaunayEdge *otherEdge = object;
-        return ([(DelaunayPoint*)[self.points objectAtIndex:0] isEqual:(DelaunayPoint*)[otherEdge.points objectAtIndex:0]] &&
-                [(DelaunayPoint*)[self.points objectAtIndex:1] isEqual:(DelaunayPoint*)[otherEdge.points objectAtIndex:1]]);
-    }
-    return NO;
-}
-- (NSUInteger)hash
-{
-    return [(DelaunayPoint*)[self.points objectAtIndex:0] hash] ^ [(DelaunayPoint*)[self.points objectAtIndex:1] hash];
+//- (BOOL)isEqual:(id)object
+//{
+//    if ([object isKindOfClass:[self class]])
+//    {
+//        DelaunayEdge *otherEdge = object;
+//        return ([(DelaunayPoint*)[self.points objectAtIndex:0] isEqual:(DelaunayPoint*)[otherEdge.points objectAtIndex:0]] &&
+//                [(DelaunayPoint*)[self.points objectAtIndex:1] isEqual:(DelaunayPoint*)[otherEdge.points objectAtIndex:1]]);
+//    }
+//    return NO;
+//}
+//- (NSUInteger)hash
+//{
+//    return [(DelaunayPoint*)[self.points objectAtIndex:0] hash] ^ [(DelaunayPoint*)[self.points objectAtIndex:1] hash];
+//
+//}
+//
+//- (id)copyWithZone:(NSZone *)zone
+//{
+//    DelaunayEdge *copy = [DelaunayEdge edgeWithPoints:self.points];
+//    return copy;
+//}
 
-}
-
-- (id)copyWithZone:(NSZone *)zone
+- (NSString *)description
 {
-    DelaunayEdge *copy = [DelaunayEdge edgeWithPoints:self.points];
-    return copy;
-}
-
-- (void)print
-{
-    NSLog(@"Edge (%p)", self);
-    for (DelaunayPoint *point in self.points)
-    {
-        [point printRecursive:NO];
-        NSLog(@"~~~");
-    }
-}
-
-- (NSMutableSet *)triangles
-{
-    return (__bridge NSMutableSet *)nonretainingTriangles;
-}
-- (void)setTriangles:(NSMutableSet *)triangles
-{
-    nonretainingTriangles = CFSetCreateMutableCopy(NULL, 2, (__bridge CFMutableSetRef)triangles);
-}
-
-- (NSArray *)points
-{
-    return (__bridge NSArray *)nonretainingPoints;
-}
-- (void)setPoints:(NSArray *)points
-{
-    nonretainingPoints = CFArrayCreateCopy(NULL, (__bridge CFArrayRef) points);
+    return [NSString stringWithFormat:@"%@ -> %@", self.points[0], self.points[1]];
 }
 
 - (DelaunayTriangle *)neighborOf:(DelaunayTriangle *)triangle
@@ -165,14 +137,6 @@
         return nil;
     }
     return [sharedTriangles anyObject];
-}
-
-- (void)remove
-{
-    for (DelaunayPoint *point in self.points)
-    {
-        [point.edges removeObject:self];
-    }
 }
 
 - (float) determinant:(float[3][3])matrix

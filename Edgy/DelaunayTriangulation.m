@@ -15,6 +15,7 @@
 @interface DelaunayTriangulation ()
 
 - (void)removeTriangle:(DelaunayTriangle *)triangle;
+- (void)enforceDelaunayPropertyStartingWithTriangles:(NSArray *)initialTriangles;
 
 @end
 
@@ -115,8 +116,25 @@
 
 - (void)removeTriangle:(DelaunayTriangle *)triangle
 {
-    [triangle remove];
+    for (DelaunayEdge *edge in triangle.edges)
+    {
+        [edge.triangles removeObject:triangle];
+        if ([edge.triangles count] == 0)
+        {
+            [self removeEdge:edge];
+        }
+    }
     [self.triangles removeObject:triangle];
+}
+
+- (void)removeEdge:(DelaunayEdge *)edge
+{
+    assert([edge.triangles count] == 0);
+    for (DelaunayPoint *point in edge.points)
+    {
+        [point.edges removeObject:edge];
+    }
+    [self.edges removeObject:edge];
 }
 
 - (BOOL)addPoint:(DelaunayPoint *)newPoint withColor:(UIColor *)color
@@ -125,7 +143,6 @@
     DelaunayTriangle * triangle = [self triangleContainingPoint:newPoint];
     if (triangle != nil)
     {
-        
         [self.points addObject:newPoint];
         
         [self removeTriangle:triangle];
@@ -159,8 +176,10 @@
         [self.triangles addObject:e1Triangle];        
         [self.triangles addObject:e2Triangle];        
         [self.triangles addObject:e3Triangle];
-        
+
         [self enforceDelaunayProperty];
+//        [self enforceDelaunayPropertyStartingWithTriangles:@[e1Triangle, e2Triangle, e3Triangle]];
+        
         return YES;
     }
     return NO;
@@ -177,6 +196,94 @@
     }
     return nil;
 }
+
+//- (void)enforceDelaunayPropertyStartingWithTriangles:(NSArray *)initialTriangles
+//{
+//    NSMutableSet *trianglesToCheck = [NSMutableSet setWithArray:initialTriangles];
+//    
+//    while ([trianglesToCheck count])
+//    {
+//        // Flip all non-Delaunay edges
+//        DelaunayTriangle *triangle = [trianglesToCheck anyObject];
+//        [trianglesToCheck removeObject:triangle];
+//        
+////        NSLog(@"Looking at triangle %@ (there are %d left)", triangle, [trianglesToCheck count]);
+//        if (![self.triangles containsObject:triangle])
+//        {
+//            NSLog(@"This is not in self.triangles!");
+//        }
+//        
+//        CGPoint circumcenter = [triangle circumcenter];
+//        
+//        float radius = sqrtf(powf(triangle.startPoint.x - circumcenter.x, 2) + powf(triangle.startPoint.y - circumcenter.y, 2));
+//        
+//        for (DelaunayEdge *sharedEdge in triangle.edges)
+//        {
+//            DelaunayTriangle *neighborTriangle = [sharedEdge neighborOf:triangle];
+//            if (neighborTriangle != nil)
+//            {
+////                NSLog(@"Looking at neighbor %@ via edge %@", neighborTriangle, sharedEdge);
+//                if (![self.triangles containsObject:neighborTriangle])
+//                {
+//                    NSLog(@"THIS IS NOT IN SELF.TRIANGLES");
+//                }
+//                if (![self.edges containsObject:sharedEdge])
+//                {
+//                    NSLog(@"THIS IS NOT IN SELF.EDGES");
+//                }
+//                
+//                // Find the non-shared point in the other triangle
+//                DelaunayPoint *ourNonSharedPoint = [triangle pointNotInEdge:sharedEdge];
+//                DelaunayPoint *theirNonSharedPoint = [neighborTriangle pointNotInEdge:sharedEdge];
+//                if (sqrtf(powf(theirNonSharedPoint.x - circumcenter.x, 2) + powf(theirNonSharedPoint.y - circumcenter.y, 2)) < radius )
+//                {
+//                    NSLog(@"Flipping!!!!!!!!!!!!!!");
+//
+////                    NSLog(@"NOPE");
+////                    continue;
+//
+//                    // If the non-shared point is within the circumcircle of this triangle, flip to share the other two points
+//                    [self removeTriangle:triangle];
+//                    [self removeTriangle:neighborTriangle];
+//                    [trianglesToCheck removeObject:triangle];
+//                    [trianglesToCheck removeObject:neighborTriangle];
+//
+//                    // Get the edges before & after the shared edge in the triangle
+//                    DelaunayEdge *beforeEdge = [triangle edgeStartingWithPoint:ourNonSharedPoint];
+//                    DelaunayEdge *afterEdge = [triangle edgeEndingWithPoint:ourNonSharedPoint];
+//                    
+//                    DelaunayEdge *newEdge = [DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:theirNonSharedPoint, ourNonSharedPoint, nil]];
+//                    [self.edges addObject:newEdge];
+//                    
+//                    // Get the edges before & after the shared edge in the neighbor triangle
+//                    DelaunayEdge *neighborBeforeEdge = [neighborTriangle edgeStartingWithPoint:theirNonSharedPoint];
+//                    DelaunayEdge *neighborAfterEdge = [neighborTriangle edgeEndingWithPoint:theirNonSharedPoint];
+//                    
+//                    DelaunayTriangle *newTriangle1 = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:newEdge, beforeEdge, neighborAfterEdge, nil]
+//                                                                           andStartPoint:theirNonSharedPoint
+//                                                                                andColor:triangle.color];
+//                    
+//                    NSLog(@"SANITY CHECK:\n%@", newTriangle1);
+//                    
+//                    DelaunayTriangle *newTriangle2 = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:neighborBeforeEdge, afterEdge, newEdge, nil]
+//                                                                           andStartPoint:theirNonSharedPoint
+//                                                                                andColor:neighborTriangle.color];
+//
+//                    
+//                    NSLog(@"SANITY CHECK:\n%@", newTriangle2);
+//
+//                    [self.triangles addObject:newTriangle1];
+//                    [self.triangles addObject:newTriangle2];
+//
+//                    [trianglesToCheck addObject:newTriangle1];
+//                    [trianglesToCheck addObject:newTriangle2];
+//                    [trianglesToCheck unionSet:[newTriangle1 neighbors]];
+//                    [trianglesToCheck unionSet:[newTriangle2 neighbors]];
+//                }
+//            }
+//        }
+//    }
+//}
 
 - (void)enforceDelaunayProperty
 {
@@ -208,14 +315,14 @@
                         // If the non-shared point is within the circumcircle of this triangle, flip to share the other two points
                         [trianglesToRemove addObject:triangle];
                         [trianglesToRemove addObject:neighborTriangle];
-
+                        
                         // Get the edges before & after the shared edge in the triangle
                         DelaunayEdge *beforeEdge = [triangle edgeStartingWithPoint:ourNonSharedPoint];
                         DelaunayEdge *afterEdge = [triangle edgeEndingWithPoint:ourNonSharedPoint];
-
+                        
                         DelaunayEdge *newEdge = [DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:theirNonSharedPoint, ourNonSharedPoint, nil]];
                         [self.edges addObject:newEdge];
-
+                        
                         // Get the edges before & after the shared edge in the neighbor triangle
                         DelaunayEdge *neighborBeforeEdge = [neighborTriangle edgeStartingWithPoint:theirNonSharedPoint];
                         DelaunayEdge *neighborAfterEdge = [neighborTriangle edgeEndingWithPoint:theirNonSharedPoint];
@@ -230,8 +337,7 @@
                         
                         [trianglesToAdd addObject:newTriangle1];
                         [trianglesToAdd addObject:newTriangle2];
-                        [sharedEdge remove];
-                        [self.edges removeObject:sharedEdge];
+//                        [self removeEdge:sharedEdge];
                         hadToFlip = YES;
                         break;
                     }

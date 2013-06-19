@@ -12,23 +12,25 @@
 #import "DelaunayPoint.h"
 
 
+@interface DelaunayTriangle ()
+
+@property (nonatomic, strong) NSArray *edges;
+
+@end
+
 @implementation DelaunayTriangle
 {
-    CFArrayRef nonretainingEdges;
+    NSArray *_edges;
     UIColor *color;
-    NSArray *cachedPoints;
-    
-    NSMutableDictionary *startPointOfEdgeCache;
-    NSMutableDictionary *pointNotInEdgeCache;
 }
 @synthesize startPoint;
 @synthesize color;
+@synthesize edges = _edges;
 
 // If color is nil, a random color will be chosen
 + (DelaunayTriangle *) triangleWithEdges:(NSArray *)edges andStartPoint:(DelaunayPoint *)startPoint andColor:(UIColor *)color
 {
     DelaunayTriangle *triangle = [[self alloc] init];
-    
     triangle.edges = edges;
     
     for (DelaunayEdge *edge in edges)
@@ -55,61 +57,40 @@
 {
     self = [super init];
     if (self) {
-        startPointOfEdgeCache = [NSMutableDictionary dictionaryWithCapacity:3];
-        pointNotInEdgeCache = [NSMutableDictionary dictionaryWithCapacity:3];
     }
     return self;
 }
 
-- (void)dealloc
+- (NSString *)description
 {
-    CFRelease(nonretainingEdges);
-}
-
-- (BOOL)isEqual:(id)object
-{
-    if ([object isKindOfClass:[self class]])
-    {
-        DelaunayTriangle *otherTriangle = object;
-        return ([(DelaunayEdge *)[self.edges objectAtIndex:0] isEqual:(DelaunayEdge *)[otherTriangle.edges objectAtIndex:0]] &&
-                [(DelaunayEdge *)[self.edges objectAtIndex:1] isEqual:(DelaunayEdge *)[otherTriangle.edges objectAtIndex:1]] &&
-                [(DelaunayEdge *)[self.edges objectAtIndex:2] isEqual:(DelaunayEdge *)[otherTriangle.edges objectAtIndex:2]]);
-    }
-    return NO;
-}
-- (NSUInteger)hash
-{
-    // I'm assuming that xor is a good "unique combination" operator here. Hopefully that assumption holds up.
-    return ([(DelaunayEdge *)[self.edges objectAtIndex:0] hash] ^
-            [(DelaunayEdge *)[self.edges objectAtIndex:1] hash] ^
-            [(DelaunayEdge *)[self.edges objectAtIndex:2] hash]);
-}
-
-- (void)print
-{
-    NSLog(@"Triangle (%p)", self);
+    NSMutableString *desc = [@"" mutableCopy];
     DelaunayPoint *edgeStartPoint = self.startPoint;
     for (DelaunayEdge *edge in self.edges)
     {
-        NSLog(@"START POINT: ");
-        [edgeStartPoint printRecursive:NO];
-        
-        [edge print];
-        NSLog(@"-------------------");
-        
+        [desc appendFormat:@"%@ (%@ -> %@)\n", edge, edgeStartPoint, [edge otherPoint:edgeStartPoint]];
         edgeStartPoint = [edge otherPoint:edgeStartPoint];
     }
+    return desc;
 }
 
-- (NSArray *)edges
-{
-    return (__bridge NSArray *)nonretainingEdges;
-}
-
-- (void)setEdges:(NSArray *)edges
-{
-    nonretainingEdges = CFArrayCreateCopy(NULL, (__bridge CFArrayRef)edges);
-}
+//- (BOOL)isEqual:(id)object
+//{
+//    if ([object isKindOfClass:[self class]])
+//    {
+//        DelaunayTriangle *otherTriangle = object;
+//        return ([(DelaunayEdge *)[self.edges objectAtIndex:0] isEqual:(DelaunayEdge *)[otherTriangle.edges objectAtIndex:0]] &&
+//                [(DelaunayEdge *)[self.edges objectAtIndex:1] isEqual:(DelaunayEdge *)[otherTriangle.edges objectAtIndex:1]] &&
+//                [(DelaunayEdge *)[self.edges objectAtIndex:2] isEqual:(DelaunayEdge *)[otherTriangle.edges objectAtIndex:2]]);
+//    }
+//    return NO;
+//}
+//- (NSUInteger)hash
+//{
+//    // I'm assuming that xor is a good "unique combination" operator here. Hopefully that assumption holds up.
+//    return ([(DelaunayEdge *)[self.edges objectAtIndex:0] hash] ^
+//            [(DelaunayEdge *)[self.edges objectAtIndex:1] hash] ^
+//            [(DelaunayEdge *)[self.edges objectAtIndex:2] hash]);
+//}
 
 - (BOOL)containsPoint:(DelaunayPoint *)point
 {
@@ -168,9 +149,6 @@
 
 - (NSArray *)points
 {
-    if (cachedPoints)
-        return cachedPoints;
-    
     NSMutableArray *points = [NSMutableArray arrayWithCapacity:3];
     DelaunayPoint *edgeStartPoint = self.startPoint;
     for (DelaunayEdge *edge in self.edges)
@@ -178,7 +156,6 @@
         [points insertObject:edgeStartPoint atIndex:[points count]];
         edgeStartPoint = [edge otherPoint:edgeStartPoint];
     }
-    cachedPoints = points;
     return points;
 }
 
@@ -196,12 +173,6 @@
 
 - (DelaunayPoint *)pointNotInEdge:(DelaunayEdge *)edge
 {
-    DelaunayPoint *cachedResult = [pointNotInEdgeCache objectForKey:edge];
-    if (cachedResult)
-    {
-        return cachedResult;
-    }
-    
     DelaunayPoint *p1 = [edge.points objectAtIndex:0];
     DelaunayPoint *p2 = [edge.points objectAtIndex:1];
     
@@ -209,7 +180,6 @@
     {
         if ( ![p isEqual:p1] && ![p  isEqual:p2] )
         {
-            [pointNotInEdgeCache setObject:p forKey:edge];
             return p;
         }
     }
@@ -244,16 +214,11 @@
 
 - (DelaunayPoint *)startPointOfEdge:(DelaunayEdge *)edgeInQuestion
 {
-    DelaunayPoint *cachedResult = [startPointOfEdgeCache objectForKey:edgeInQuestion];
-    if (cachedResult)
-        return cachedResult;
-    
     DelaunayPoint *edgeStartPoint = self.startPoint;
     for (DelaunayEdge *edge in self.edges)
     {
         if (edge == edgeInQuestion)
         {
-            [startPointOfEdgeCache setObject:edgeStartPoint forKey:edgeInQuestion];
             return edgeStartPoint;
         }
         edgeStartPoint = [edge otherPoint:edgeStartPoint];
@@ -272,14 +237,6 @@
     }
     NSLog(@"ASKED FOR THE END POINT OF EDGE THAT IS NOT IN THIS TRIANGLE");
     return nil;    
-}
-
-- (void)remove
-{
-    for (DelaunayEdge *edge in self.edges)
-    {
-        [edge.triangles removeObject:self];
-    }
 }
 
 - (void)drawInContext:(CGContextRef)ctx

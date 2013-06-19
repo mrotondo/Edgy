@@ -10,6 +10,12 @@
 #import "DelaunayEdge.h"
 #import "DelaunayTriangle.h"
 
+@interface DelaunayPoint ()
+
+@property (nonatomic, strong) NSMutableSet *edges;
+
+@end
+
 @implementation DelaunayPoint
 @synthesize x, y;
 @synthesize UUIDString;
@@ -46,43 +52,23 @@
     self = [super init];
     if (self)
     {
-        nonretainingEdges = CFSetCreateMutable(NULL, 2, NULL);
+        self.edges = [NSMutableSet set];
     }
     return self;
 }
 
-- (void)dealloc
+- (NSString *)description
 {
-    CFRelease(nonretainingEdges);
+    return [NSString stringWithFormat:@"(%.0f, %.0f)", self.x, self.y];
 }
 
-- (id)copyWithZone:(NSZone *)zone
-{
-    DelaunayPoint *copy = [DelaunayPoint pointAtX:self.x andY:self.y withUUID:self.UUIDString];
-    copy.contribution = self.contribution;
-    copy.value = self.value;
-    return copy;
-}
-
-- (void)printRecursive:(BOOL)recursive
-{
-    NSLog(@"Point %@ (%p) at %f, %f", self.UUIDString, self, self.x, self.y);
-    if (recursive)
-    {
-        NSLog(@"I'm connected to these points in counter-clockwise order:");
-        DelaunayPoint *otherPoint;
-        for (DelaunayEdge *edge in [self counterClockwiseEdges])
-        {
-            otherPoint = [edge otherPoint:self];
-            [otherPoint printRecursive:NO];
-        }
-    }
-}
-
-- (NSMutableSet *)edges
-{
-    return (__bridge NSMutableSet *)nonretainingEdges;
-}
+//- (id)copyWithZone:(NSZone *)zone
+//{
+//    DelaunayPoint *copy = [DelaunayPoint pointAtX:self.x andY:self.y withUUID:self.UUIDString];
+//    copy.contribution = self.contribution;
+//    copy.value = self.value;
+//    return copy;
+//}
 
 - (NSArray *)counterClockwiseEdges
 {

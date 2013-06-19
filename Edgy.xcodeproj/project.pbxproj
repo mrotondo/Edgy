@@ -7,6 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D508BB7E17714D5600D36144 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E1767813D367E0009A2894 /* Foundation.framework */; };
+		D508BB7F17714D5600D36144 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E1767A13D367E0009A2894 /* CoreGraphics.framework */; };
+		D508BB8017714D5600D36144 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E1767613D367E0009A2894 /* UIKit.framework */; };
+		D508BB8617714D5600D36144 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D508BB8417714D5600D36144 /* InfoPlist.strings */; };
+		D508BB8817714D5600D36144 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D508BB8717714D5600D36144 /* main.m */; };
+		D508BB8C17714D5600D36144 /* EDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D508BB8B17714D5600D36144 /* EDAppDelegate.m */; };
+		D508BB8F17714D5600D36144 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D508BB8D17714D5600D36144 /* Main_iPhone.storyboard */; };
+		D508BB9217714D5600D36144 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D508BB9017714D5600D36144 /* Main_iPad.storyboard */; };
+		D508BB9517714D5600D36144 /* EDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D508BB9417714D5600D36144 /* EDViewController.m */; };
+		D508BB9717714D5600D36144 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D508BB9617714D5600D36144 /* Images.xcassets */; };
+		D508BB9E17714D5600D36144 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D508BB9D17714D5600D36144 /* XCTest.framework */; };
+		D508BB9F17714D5600D36144 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E1767813D367E0009A2894 /* Foundation.framework */; };
+		D508BBA017714D5600D36144 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5E1767613D367E0009A2894 /* UIKit.framework */; };
+		D508BBA817714D5600D36144 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D508BBA617714D5600D36144 /* InfoPlist.strings */; };
+		D508BBAA17714D5600D36144 /* Edgy_DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D508BBA917714D5600D36144 /* Edgy_DemoTests.m */; };
+		D508BBB117714E1600D36144 /* libEdgy iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5A55A1013EE19130001ADF7 /* libEdgy iOS.a */; };
+		D508BBB417714FD100D36144 /* EDDiagnosticView.m in Sources */ = {isa = PBXBuildFile; fileRef = D508BBB317714FD100D36144 /* EDDiagnosticView.m */; };
 		D590C4461527BBC6007248F7 /* DelaunayEdge.h in Headers */ = {isa = PBXBuildFile; fileRef = D590C43C1527BBC6007248F7 /* DelaunayEdge.h */; };
 		D590C4471527BBC6007248F7 /* DelaunayEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = D590C43D1527BBC6007248F7 /* DelaunayEdge.m */; };
 		D590C4481527BBC6007248F7 /* DelaunayPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = D590C43E1527BBC6007248F7 /* DelaunayPoint.h */; };
@@ -35,6 +52,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D508BBA117714D5600D36144 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5E1766913D367E0009A2894 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D508BB7C17714D5500D36144;
+			remoteInfo = "Edgy Demo";
+		};
 		D590C43A1527BB04007248F7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D5E1766913D367E0009A2894 /* Project object */;
@@ -45,6 +69,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D508BB7D17714D5500D36144 /* Edgy Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Edgy Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D508BB8317714D5600D36144 /* Edgy Demo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Edgy Demo-Info.plist"; sourceTree = "<group>"; };
+		D508BB8517714D5600D36144 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D508BB8717714D5600D36144 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D508BB8917714D5600D36144 /* Edgy Demo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Edgy Demo-Prefix.pch"; sourceTree = "<group>"; };
+		D508BB8A17714D5600D36144 /* EDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDAppDelegate.h; sourceTree = "<group>"; };
+		D508BB8B17714D5600D36144 /* EDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDAppDelegate.m; sourceTree = "<group>"; };
+		D508BB8E17714D5600D36144 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		D508BB9117714D5600D36144 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		D508BB9317714D5600D36144 /* EDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EDViewController.h; sourceTree = "<group>"; };
+		D508BB9417714D5600D36144 /* EDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EDViewController.m; sourceTree = "<group>"; };
+		D508BB9617714D5600D36144 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D508BB9C17714D5600D36144 /* Edgy DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Edgy DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D508BB9D17714D5600D36144 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D508BBA517714D5600D36144 /* Edgy DemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Edgy DemoTests-Info.plist"; sourceTree = "<group>"; };
+		D508BBA717714D5600D36144 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D508BBA917714D5600D36144 /* Edgy_DemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Edgy_DemoTests.m; sourceTree = "<group>"; };
+		D508BBB217714FD100D36144 /* EDDiagnosticView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDDiagnosticView.h; sourceTree = "<group>"; };
+		D508BBB317714FD100D36144 /* EDDiagnosticView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDDiagnosticView.m; sourceTree = "<group>"; };
 		D590C43C1527BBC6007248F7 /* DelaunayEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayEdge.h; sourceTree = "<group>"; };
 		D590C43D1527BBC6007248F7 /* DelaunayEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelaunayEdge.m; sourceTree = "<group>"; };
 		D590C43E1527BBC6007248F7 /* DelaunayPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelaunayPoint.h; sourceTree = "<group>"; };
@@ -77,6 +120,27 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D508BB7A17714D5500D36144 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D508BBB117714E1600D36144 /* libEdgy iOS.a in Frameworks */,
+				D508BB7F17714D5600D36144 /* CoreGraphics.framework in Frameworks */,
+				D508BB8017714D5600D36144 /* UIKit.framework in Frameworks */,
+				D508BB7E17714D5600D36144 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D508BB9917714D5600D36144 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D508BB9E17714D5600D36144 /* XCTest.framework in Frameworks */,
+				D508BBA017714D5600D36144 /* UIKit.framework in Frameworks */,
+				D508BB9F17714D5600D36144 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D5A55A0D13EE19130001ADF7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -101,6 +165,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D508BB8117714D5600D36144 /* Edgy Demo */ = {
+			isa = PBXGroup;
+			children = (
+				D508BB8A17714D5600D36144 /* EDAppDelegate.h */,
+				D508BB8B17714D5600D36144 /* EDAppDelegate.m */,
+				D508BB8D17714D5600D36144 /* Main_iPhone.storyboard */,
+				D508BB9017714D5600D36144 /* Main_iPad.storyboard */,
+				D508BB9317714D5600D36144 /* EDViewController.h */,
+				D508BB9417714D5600D36144 /* EDViewController.m */,
+				D508BB9617714D5600D36144 /* Images.xcassets */,
+				D508BB8217714D5600D36144 /* Supporting Files */,
+				D508BBB217714FD100D36144 /* EDDiagnosticView.h */,
+				D508BBB317714FD100D36144 /* EDDiagnosticView.m */,
+			);
+			path = "Edgy Demo";
+			sourceTree = "<group>";
+		};
+		D508BB8217714D5600D36144 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D508BB8317714D5600D36144 /* Edgy Demo-Info.plist */,
+				D508BB8417714D5600D36144 /* InfoPlist.strings */,
+				D508BB8717714D5600D36144 /* main.m */,
+				D508BB8917714D5600D36144 /* Edgy Demo-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D508BBA317714D5600D36144 /* Edgy DemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				D508BBA917714D5600D36144 /* Edgy_DemoTests.m */,
+				D508BBA417714D5600D36144 /* Supporting Files */,
+			);
+			path = "Edgy DemoTests";
+			sourceTree = "<group>";
+		};
+		D508BBA417714D5600D36144 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D508BBA517714D5600D36144 /* Edgy DemoTests-Info.plist */,
+				D508BBA617714D5600D36144 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		D5A55A1213EE19130001ADF7 /* Edgy */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,8 +240,10 @@
 		D5E1766713D367E0009A2894 = {
 			isa = PBXGroup;
 			children = (
+				D508BB8117714D5600D36144 /* Edgy Demo */,
 				D5E1767C13D367E0009A2894 /* DelaunayTest */,
 				D5A55A1213EE19130001ADF7 /* Edgy */,
+				D508BBA317714D5600D36144 /* Edgy DemoTests */,
 				D5E1767513D367E0009A2894 /* Frameworks */,
 				D5E1767313D367E0009A2894 /* Products */,
 			);
@@ -142,6 +254,8 @@
 			children = (
 				D5E1767213D367E0009A2894 /* DelaunayTest.app */,
 				D5A55A1013EE19130001ADF7 /* libEdgy iOS.a */,
+				D508BB7D17714D5500D36144 /* Edgy Demo.app */,
+				D508BB9C17714D5600D36144 /* Edgy DemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,6 +266,7 @@
 				D5E1767613D367E0009A2894 /* UIKit.framework */,
 				D5E1767813D367E0009A2894 /* Foundation.framework */,
 				D5E1767A13D367E0009A2894 /* CoreGraphics.framework */,
+				D508BB9D17714D5600D36144 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -202,6 +317,41 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		D508BB7C17714D5500D36144 /* Edgy Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D508BBAF17714D5600D36144 /* Build configuration list for PBXNativeTarget "Edgy Demo" */;
+			buildPhases = (
+				D508BB7917714D5500D36144 /* Sources */,
+				D508BB7A17714D5500D36144 /* Frameworks */,
+				D508BB7B17714D5500D36144 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Edgy Demo";
+			productName = "Edgy Demo";
+			productReference = D508BB7D17714D5500D36144 /* Edgy Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D508BB9B17714D5600D36144 /* Edgy DemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D508BBB017714D5600D36144 /* Build configuration list for PBXNativeTarget "Edgy DemoTests" */;
+			buildPhases = (
+				D508BB9817714D5600D36144 /* Sources */,
+				D508BB9917714D5600D36144 /* Frameworks */,
+				D508BB9A17714D5600D36144 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D508BBA217714D5600D36144 /* PBXTargetDependency */,
+			);
+			name = "Edgy DemoTests";
+			productName = "Edgy DemoTests";
+			productReference = D508BB9C17714D5600D36144 /* Edgy DemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D5A55A0F13EE19130001ADF7 /* Edgy iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D5A55A1713EE19130001ADF7 /* Build configuration list for PBXNativeTarget "Edgy iOS" */;
@@ -245,6 +395,11 @@
 			attributes = {
 				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = Stanford;
+				TargetAttributes = {
+					D508BB9B17714D5600D36144 = {
+						TestTargetID = D5E1767113D367E0009A2894;
+					};
+				};
 			};
 			buildConfigurationList = D5E1766C13D367E0009A2894 /* Build configuration list for PBXProject "Edgy" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -252,6 +407,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = D5E1766713D367E0009A2894;
 			productRefGroup = D5E1767313D367E0009A2894 /* Products */;
@@ -259,12 +415,33 @@
 			projectRoot = "";
 			targets = (
 				D5E1767113D367E0009A2894 /* DelaunayTest */,
+				D508BB7C17714D5500D36144 /* Edgy Demo */,
 				D5A55A0F13EE19130001ADF7 /* Edgy iOS */,
+				D508BB9B17714D5600D36144 /* Edgy DemoTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D508BB7B17714D5500D36144 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D508BB9217714D5600D36144 /* Main_iPad.storyboard in Resources */,
+				D508BB9717714D5600D36144 /* Images.xcassets in Resources */,
+				D508BB8F17714D5600D36144 /* Main_iPhone.storyboard in Resources */,
+				D508BB8617714D5600D36144 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D508BB9A17714D5600D36144 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D508BBA817714D5600D36144 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D5E1767013D367E0009A2894 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -279,6 +456,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D508BB7917714D5500D36144 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D508BB9517714D5600D36144 /* EDViewController.m in Sources */,
+				D508BB8817714D5600D36144 /* main.m in Sources */,
+				D508BBB417714FD100D36144 /* EDDiagnosticView.m in Sources */,
+				D508BB8C17714D5600D36144 /* EDAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D508BB9817714D5600D36144 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D508BBAA17714D5600D36144 /* Edgy_DemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D5A55A0C13EE19130001ADF7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -305,6 +501,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D508BBA217714D5600D36144 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D508BB7C17714D5500D36144 /* Edgy Demo */;
+			targetProxy = D508BBA117714D5600D36144 /* PBXContainerItemProxy */;
+		};
 		D590C43B1527BB04007248F7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D5A55A0F13EE19130001ADF7 /* Edgy iOS */;
@@ -313,6 +514,38 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		D508BB8417714D5600D36144 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D508BB8517714D5600D36144 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D508BB8D17714D5600D36144 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D508BB8E17714D5600D36144 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		D508BB9017714D5600D36144 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D508BB9117714D5600D36144 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		D508BBA617714D5600D36144 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D508BBA717714D5600D36144 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		D5E1767F13D367E0009A2894 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -340,6 +573,159 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D508BBAB17714D5600D36144 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Edgy Demo/Edgy Demo-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "Edgy Demo/Edgy Demo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D508BBAC17714D5600D36144 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Edgy Demo/Edgy Demo-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "Edgy Demo/Edgy Demo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		D508BBAD17714D5600D36144 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DelaunayTest.app/DelaunayTest";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Xcode5-DP.app/Contents/Developer/Library/Frameworks",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Edgy Demo/Edgy Demo-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "Edgy DemoTests/Edgy DemoTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		D508BBAE17714D5600D36144 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DelaunayTest.app/DelaunayTest";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Xcode5-DP.app/Contents/Developer/Library/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Edgy Demo/Edgy Demo-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "Edgy DemoTests/Edgy DemoTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		D5A55A1513EE19130001ADF7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -381,7 +767,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
@@ -396,7 +782,7 @@
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
@@ -414,7 +800,6 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DelaunayTest/DelaunayTest-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = Edgy/;
 				INFOPLIST_FILE = "DelaunayTest/DelaunayTest-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -429,7 +814,6 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DelaunayTest/DelaunayTest-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = Edgy/;
 				INFOPLIST_FILE = "DelaunayTest/DelaunayTest-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -441,6 +825,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D508BBAF17714D5600D36144 /* Build configuration list for PBXNativeTarget "Edgy Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D508BBAB17714D5600D36144 /* Debug */,
+				D508BBAC17714D5600D36144 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D508BBB017714D5600D36144 /* Build configuration list for PBXNativeTarget "Edgy DemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D508BBAD17714D5600D36144 /* Debug */,
+				D508BBAE17714D5600D36144 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		D5A55A1713EE19130001ADF7 /* Build configuration list for PBXNativeTarget "Edgy iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

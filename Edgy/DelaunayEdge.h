@@ -11,12 +11,7 @@
 @class DelaunayTriangle;
 @class DelaunayPoint;
 
-@interface DelaunayEdge : NSObject <NSCopying>
-{
-    
-    CFMutableSetRef nonretainingTriangles;
-    CFArrayRef nonretainingPoints;
-}
+@interface DelaunayEdge : NSObject
 
 @property (nonatomic, strong) NSMutableSet *triangles;
 @property (nonatomic, strong) NSArray *points;
@@ -27,10 +22,9 @@
 - (BOOL)pointOnLeft:(DelaunayPoint*)point withStartPoint:(DelaunayPoint *)startPoint;
 - (DelaunayTriangle *)sharedTriangleWithEdge:(DelaunayEdge *)otherEdge;
 - (float)length;
-- (void)remove;
 
-- (BOOL)isEqual:(id)object;
-- (NSUInteger)hash;
+//- (BOOL)isEqual:(id)object;
+//- (NSUInteger)hash;
 
 - (void)print;
 

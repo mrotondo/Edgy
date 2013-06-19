@@ -23,7 +23,6 @@
 - (BOOL)containsPoint:(DelaunayPoint *)point;
 - (CGPoint)circumcenter;
 - (BOOL)inFrameTriangleOfTriangulation:(DelaunayTriangulation *)triangulation;
-- (void)remove;
 - (void)drawInContext:(CGContextRef)ctx;
 - (NSSet *)neighbors;
 - (DelaunayPoint *)pointNotInEdge:(DelaunayEdge *)edge;
@@ -32,8 +31,8 @@
 - (DelaunayPoint *)startPointOfEdge:(DelaunayEdge *)edgeInQuestion;
 - (DelaunayPoint *)endPointOfEdge:(DelaunayEdge *)edgeInQuestion;
 
-- (BOOL)isEqual:(id)object;
-- (NSUInteger)hash;
+//- (BOOL)isEqual:(id)object;
+//- (NSUInteger)hash;
 
 - (void)print;
 
