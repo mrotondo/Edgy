@@ -40,10 +40,10 @@
     point.y = newY;
     point.UUIDString = UUIDString;
     point.contribution = 0.0;
-    point.color = [UIColor colorWithRed:(float)rand() / RAND_MAX
-                                  green:(float)rand() / RAND_MAX
-                                   blue:(float)rand() / RAND_MAX
-                                  alpha:1.0];
+//    point.color = [UIColor colorWithRed:(float)rand() / RAND_MAX
+//                                  green:(float)rand() / RAND_MAX
+//                                   blue:(float)rand() / RAND_MAX
+//                                  alpha:1.0];
     return point;
 }
 

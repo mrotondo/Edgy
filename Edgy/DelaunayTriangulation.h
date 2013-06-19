@@ -30,6 +30,5 @@
 - (DelaunayTriangle *)triangleContainingPoint:(DelaunayPoint *)point;
 - (NSDictionary*)voronoiCells;
 - (void)interpolateWeightsWithPoint:(DelaunayPoint *)point;
-- (void)print;
 
 @end

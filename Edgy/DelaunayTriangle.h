@@ -31,9 +31,4 @@
 - (DelaunayPoint *)startPointOfEdge:(DelaunayEdge *)edgeInQuestion;
 - (DelaunayPoint *)endPointOfEdge:(DelaunayEdge *)edgeInQuestion;
 
-//- (BOOL)isEqual:(id)object;
-//- (NSUInteger)hash;
-
-- (void)print;
-
 @end

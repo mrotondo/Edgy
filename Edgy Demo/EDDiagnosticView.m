@@ -29,8 +29,8 @@
     
     for (DelaunayTriangle *triangle in self.triangulation.triangles)
     {
-        //        if ([triangle inFrameTriangleOfTriangulation:self.triangulation])
-        //            continue;
+        if ([triangle inFrameTriangleOfTriangulation:self.triangulation])
+            continue;
         
 //        [triangle.color set];
         [[UIColor whiteColor] set];
@@ -65,11 +65,17 @@
     NSDictionary *voronoiCells = [self.triangulation voronoiCells];
     for (VoronoiCell *cell in [voronoiCells objectEnumerator])
     {
-        [[UIColor colorWithRed:(arc4random() / (float)0x100000000) green:(arc4random() / (float)0x100000000) blue:(arc4random() / (float)0x100000000) alpha:0.8] set];
         [cell drawInContext:ctx];
-        CGContextFillPath(ctx);
-        [[UIColor colorWithWhite:0.0 alpha:1.0] set];
-        CGContextStrokePath(ctx);
+        if (cell.site.color)
+        {
+            [cell.site.color set];
+            CGContextDrawPath(ctx, kCGPathFill);
+        }
+        else
+        {
+            [[UIColor colorWithRed:(arc4random() / (float)0x100000000) green:(arc4random() / (float)0x100000000) blue:(arc4random() / (float)0x100000000) alpha:0.9] set];
+            CGContextDrawPath(ctx, kCGPathStroke);
+        }
     }
 }
 

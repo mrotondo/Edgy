@@ -20,6 +20,7 @@
 
 @implementation DelaunayTriangle
 {
+    NSArray *_pointsCache;
     NSArray *_edges;
     UIColor *color;
 }
@@ -41,13 +42,13 @@
     triangle.startPoint = startPoint;
 
 
-    if ( nil == color )
-    {
-        color = [UIColor colorWithRed:(float)rand() / RAND_MAX
-                                green:(float)rand() / RAND_MAX
-                                 blue:(float)rand() / RAND_MAX
-                                alpha:1.0];
-    }
+//    if ( nil == color )
+//    {
+//        color = [UIColor colorWithRed:(float)rand() / RAND_MAX
+//                                green:(float)rand() / RAND_MAX
+//                                 blue:(float)rand() / RAND_MAX
+//                                alpha:1.0];
+//    }
     triangle.color = color;
     
     return triangle;
@@ -149,6 +150,11 @@
 
 - (NSArray *)points
 {
+    if (_pointsCache)
+    {
+        return _pointsCache;
+    }
+    
     NSMutableArray *points = [NSMutableArray arrayWithCapacity:3];
     DelaunayPoint *edgeStartPoint = self.startPoint;
     for (DelaunayEdge *edge in self.edges)
@@ -156,6 +162,7 @@
         [points insertObject:edgeStartPoint atIndex:[points count]];
         edgeStartPoint = [edge otherPoint:edgeStartPoint];
     }
+    _pointsCache = points;
     return points;
 }
 

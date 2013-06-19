@@ -105,15 +105,6 @@
     return dt;
 }
 
-- (void)print
-{
-    for (DelaunayTriangle *triangle in self.triangles)
-    {
-        [triangle print];
-        NSLog(@"---");
-    }
-}
-
 - (void)removeTriangle:(DelaunayTriangle *)triangle
 {
     for (DelaunayEdge *edge in triangle.edges)
