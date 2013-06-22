@@ -34,8 +34,8 @@
     
     for (DelaunayTriangle *triangle in self.triangulation.triangles)
     {
-//        if ([triangle inFrameTriangleOfTriangulation:self.triangulation])
-//            continue;
+        if ([triangle inFrameTriangleOfTriangulation:self.triangulation])
+            continue;
         
         [triangle.color set];
 //        [[UIColor whiteColor] set];

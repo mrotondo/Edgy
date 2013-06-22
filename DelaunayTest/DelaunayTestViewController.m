@@ -55,8 +55,15 @@
 - (void)reset
 {
     self.triangulation = [DelaunayTriangulation triangulationWithRect:self.view.bounds];
-//    self.triangulation = [DelaunayTriangulation triangulationWithRect:CGRectMake(0, 0, 512, 384)];
-//    self.triangulation = [DelaunayTriangulation triangulationWithRect:CGRectMake(256, 167, 512, 384)];
+    
+    for (int i = 0; i < 20; i++)
+    {
+        CGPoint loc = CGPointMake(self.view.bounds.size.width * (arc4random() / (float)0x100000000),
+                                  self.view.bounds.size.height * (arc4random() / (float)0x100000000));
+        DelaunayPoint *newPoint = [DelaunayPoint pointAtX:loc.x andY:loc.y];
+        [self.triangulation addPoint:newPoint withColor:nil];
+    }
+    
     ((DelaunayView *)self.view).triangulation = triangulation;
     self.interpaderpSwitch.on = NO;
     self.interpolating = NO;
