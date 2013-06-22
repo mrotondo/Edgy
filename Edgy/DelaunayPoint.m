@@ -17,28 +17,20 @@
 @end
 
 @implementation DelaunayPoint
-@synthesize x, y;
-@synthesize UUIDString;
-@synthesize contribution;
-@synthesize value;
-@synthesize color;
 
 + (DelaunayPoint *)pointAtX:(float)newX andY:(float)newY
 {
-    CFUUIDRef UUIDRef = CFUUIDCreate(kCFAllocatorDefault);
-    CFStringRef stringRef = CFUUIDCreateString(kCFAllocatorDefault, UUIDRef);
-    NSString *UUIDString = (__bridge NSString *)stringRef;
-    CFRelease(UUIDRef);
-    DelaunayPoint *point = [DelaunayPoint pointAtX:newX andY:newY withUUID:UUIDString];
+    NSInteger newID = random();
+    DelaunayPoint *point = [DelaunayPoint pointAtX:newX andY:newY withID:[NSNumber numberWithInteger:newID]];
     return point;
 }
 
-+ (DelaunayPoint *)pointAtX:(float)newX andY:(float)newY withUUID:(NSString *)UUIDString
++ (DelaunayPoint *)pointAtX:(float)newX andY:(float)newY withID:(NSNumber *)idNumber
 {
     DelaunayPoint *point = [[self alloc] init];
     point.x = newX;
     point.y = newY;
-    point.UUIDString = UUIDString;
+    point.idNumber = idNumber;
     point.contribution = 0.0;
 //    point.color = [UIColor colorWithRed:(float)rand() / RAND_MAX
 //                                  green:(float)rand() / RAND_MAX
@@ -62,13 +54,24 @@
     return [NSString stringWithFormat:@"(%.0f, %.0f)", self.x, self.y];
 }
 
-//- (id)copyWithZone:(NSZone *)zone
-//{
-//    DelaunayPoint *copy = [DelaunayPoint pointAtX:self.x andY:self.y withUUID:self.UUIDString];
-//    copy.contribution = self.contribution;
-//    copy.value = self.value;
-//    return copy;
-//}
+- (BOOL)isEqual:(id)object
+{
+    assert([object isKindOfClass:[self class]]);
+    DelaunayPoint *otherPoint = (DelaunayPoint *)object;
+    return [self.idNumber integerValue] == [otherPoint.idNumber integerValue];
+}
+- (NSUInteger)hash
+{
+    return [self.idNumber integerValue];
+}
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    DelaunayPoint *copy = [DelaunayPoint pointAtX:self.x andY:self.y withID:self.idNumber];
+    copy.contribution = self.contribution;
+    copy.value = self.value;
+    return copy;
+}
 
 - (NSArray *)counterClockwiseEdges
 {

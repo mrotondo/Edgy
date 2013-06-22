@@ -23,4 +23,7 @@
 - (DelaunayTriangle *)sharedTriangleWithEdge:(DelaunayEdge *)otherEdge;
 - (float)length;
 
+- (BOOL)isEqual:(id)object;
+- (NSUInteger)hash;
+
 @end

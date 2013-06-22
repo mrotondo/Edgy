@@ -15,7 +15,6 @@
 @interface DelaunayTriangulation ()
 
 - (void)removeTriangle:(DelaunayTriangle *)triangle;
-- (void)enforceDelaunayPropertyStartingWithTriangles:(NSArray *)initialTriangles;
 
 @end
 
@@ -49,11 +48,11 @@
     DelaunayPoint *p2 = [DelaunayPoint pointAtX:x andY:h * 2];
     DelaunayPoint *p3 = [DelaunayPoint pointAtX:w * 2 andY:y];
 
-    DelaunayEdge *e1 = [DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:p1, p2, nil]];
-    DelaunayEdge *e2 = [DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:p2, p3, nil]];
-    DelaunayEdge *e3 = [DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:p3, p1, nil]];
+    DelaunayEdge *e1 = [DelaunayEdge edgeWithPoints:@[p1, p2]];
+    DelaunayEdge *e2 = [DelaunayEdge edgeWithPoints:@[p2, p3]];
+    DelaunayEdge *e3 = [DelaunayEdge edgeWithPoints:@[p3, p1]];
     
-    DelaunayTriangle *triangle = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:e1, e2, e3, nil] andStartPoint:p1 andColor:nil];
+    DelaunayTriangle *triangle = [DelaunayTriangle triangleWithEdges:@[e1, e2, e3] andStartPoint:p1 andColor:nil];
     dt.frameTrianglePoints = [NSSet setWithObjects:p1, p2, p3, nil];
     
     dt.triangles = [NSMutableSet setWithObject:triangle];
@@ -80,7 +79,7 @@
     {
         DelaunayPoint *p1 = [pointCopies member:[edge.points objectAtIndex:0]];
         DelaunayPoint *p2 = [pointCopies member:[edge.points objectAtIndex:1]];
-        [edgeCopies addObject:[DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:p1, p2, nil]]];
+        [edgeCopies addObject:[DelaunayEdge edgeWithPoints:@[p1, p2]]];
     }
     
     for (DelaunayTriangle *triangle in self.triangles)
@@ -88,7 +87,7 @@
         DelaunayEdge *e1 = [edgeCopies member:[triangle.edges objectAtIndex:0]];
         DelaunayEdge *e2 = [edgeCopies member:[triangle.edges objectAtIndex:1]];
         DelaunayEdge *e3 = [edgeCopies member:[triangle.edges objectAtIndex:2]];
-        DelaunayTriangle *triangleCopy = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:e1, e2, e3, nil] andStartPoint:[pointCopies member:triangle.startPoint] andColor:triangle.color];
+        DelaunayTriangle *triangleCopy = [DelaunayTriangle triangleWithEdges:@[e1, e2, e3] andStartPoint:[pointCopies member:triangle.startPoint] andColor:triangle.color];
         [triangleCopies addObject:triangleCopy];
     }
 
@@ -110,10 +109,6 @@
     for (DelaunayEdge *edge in triangle.edges)
     {
         [edge.triangles removeObject:triangle];
-        if ([edge.triangles count] == 0)
-        {
-            [self removeEdge:edge];
-        }
     }
     [self.triangles removeObject:triangle];
 }
@@ -143,24 +138,24 @@
         DelaunayEdge *e3 = [triangle.edges objectAtIndex:2];
 
         DelaunayPoint *edgeStartPoint = triangle.startPoint;
-        DelaunayEdge *new1 = [DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:edgeStartPoint, newPoint, nil]];
+        DelaunayEdge *new1 = [DelaunayEdge edgeWithPoints:@[edgeStartPoint, newPoint]];
         edgeStartPoint = [e1 otherPoint:edgeStartPoint];
-        DelaunayEdge *new2 = [DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:edgeStartPoint, newPoint, nil]];
+        DelaunayEdge *new2 = [DelaunayEdge edgeWithPoints:@[edgeStartPoint, newPoint]];
         edgeStartPoint = [e2 otherPoint:edgeStartPoint];
-        DelaunayEdge *new3 = [DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:edgeStartPoint, newPoint, nil]];
+        DelaunayEdge *new3 = [DelaunayEdge edgeWithPoints:@[edgeStartPoint, newPoint]];
         
         [self.edges addObject:new1];
         [self.edges addObject:new2];
         [self.edges addObject:new3];
         
         // Use start point and counter-clockwise ordered edges to enforce counter-clockwiseness in point-containment checking
-        DelaunayTriangle * e1Triangle = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:new1, e1, new2, nil]
+        DelaunayTriangle * e1Triangle = [DelaunayTriangle triangleWithEdges:@[new1, e1, new2]
                                                               andStartPoint:newPoint 
                                                                    andColor:color];
-        DelaunayTriangle * e2Triangle = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:new2, e2, new3, nil]
+        DelaunayTriangle * e2Triangle = [DelaunayTriangle triangleWithEdges:@[new2, e2, new3]
                                                               andStartPoint:newPoint
                                                                    andColor:color];
-        DelaunayTriangle * e3Triangle = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:new3, e3, new1, nil]
+        DelaunayTriangle * e3Triangle = [DelaunayTriangle triangleWithEdges:@[new3, e3, new1]
                                                               andStartPoint:newPoint
                                                                    andColor:color];
         
@@ -284,6 +279,7 @@
         hadToFlip = NO;
         
         NSMutableSet *trianglesToRemove = [NSMutableSet set];
+        NSMutableSet *edgesToRemove = [NSMutableSet set];
         NSMutableSet *trianglesToAdd = [NSMutableSet set];
         
         // Flip all non-Delaunay edges
@@ -306,23 +302,24 @@
                         // If the non-shared point is within the circumcircle of this triangle, flip to share the other two points
                         [trianglesToRemove addObject:triangle];
                         [trianglesToRemove addObject:neighborTriangle];
+                        [edgesToRemove addObject:sharedEdge];
                         
                         // Get the edges before & after the shared edge in the triangle
                         DelaunayEdge *beforeEdge = [triangle edgeStartingWithPoint:ourNonSharedPoint];
                         DelaunayEdge *afterEdge = [triangle edgeEndingWithPoint:ourNonSharedPoint];
                         
-                        DelaunayEdge *newEdge = [DelaunayEdge edgeWithPoints:[NSArray arrayWithObjects:theirNonSharedPoint, ourNonSharedPoint, nil]];
+                        DelaunayEdge *newEdge = [DelaunayEdge edgeWithPoints:@[theirNonSharedPoint, ourNonSharedPoint]];
                         [self.edges addObject:newEdge];
                         
                         // Get the edges before & after the shared edge in the neighbor triangle
                         DelaunayEdge *neighborBeforeEdge = [neighborTriangle edgeStartingWithPoint:theirNonSharedPoint];
                         DelaunayEdge *neighborAfterEdge = [neighborTriangle edgeEndingWithPoint:theirNonSharedPoint];
                         
-                        DelaunayTriangle *newTriangle1 = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:newEdge, beforeEdge, neighborAfterEdge, nil]
+                        DelaunayTriangle *newTriangle1 = [DelaunayTriangle triangleWithEdges:@[newEdge, beforeEdge, neighborAfterEdge]
                                                                                andStartPoint:theirNonSharedPoint
                                                                                     andColor:triangle.color];
                         
-                        DelaunayTriangle *newTriangle2 = [DelaunayTriangle triangleWithEdges:[NSArray arrayWithObjects:neighborBeforeEdge, afterEdge, newEdge, nil]
+                        DelaunayTriangle *newTriangle2 = [DelaunayTriangle triangleWithEdges:@[neighborBeforeEdge, afterEdge, newEdge]
                                                                                andStartPoint:theirNonSharedPoint
                                                                                     andColor:neighborTriangle.color];
                         
@@ -335,12 +332,18 @@
                 }
             }
             if (hadToFlip)
+            {
                 break;
+            }
         }
         
         for (DelaunayTriangle* triangleToRemove in trianglesToRemove)
         {
             [self removeTriangle:triangleToRemove];
+        }
+        for (DelaunayEdge *edgeToRemove in edgesToRemove)
+        {
+            [self removeEdge:edgeToRemove];
         }
         for (DelaunayTriangle* triangleToAdd in trianglesToAdd)
         {
@@ -368,7 +371,7 @@
             prevEdge = edge;
         }
         //[cells addObject:[VoronoiCell voronoiCellAtSite:point withNodes:nodes]];
-        [cells setObject:[VoronoiCell voronoiCellAtSite:point withNodes:nodes] forKey:point.UUIDString];
+        [cells setObject:[VoronoiCell voronoiCellAtSite:point withNodes:nodes] forKey:point.idNumber];
     }
     return cells;
 }
@@ -385,22 +388,22 @@
         NSDictionary *testVoronoiCells = [testTriangulation voronoiCells];
         float fractionSum = 0.0;
         NSMutableDictionary *fractions = [NSMutableDictionary dictionaryWithCapacity:[voronoiCells count]];
-        for ( DelaunayPoint *point in [voronoiCells keyEnumerator] )
+        for ( NSNumber *pointIDNumber in [voronoiCells keyEnumerator] )
         {
-            VoronoiCell *cell = [voronoiCells objectForKey:point.UUIDString];
-            VoronoiCell *testCell = [testVoronoiCells objectForKey:point.UUIDString];
+            VoronoiCell *cell = [voronoiCells objectForKey:pointIDNumber];
+            VoronoiCell *testCell = [testVoronoiCells objectForKey:pointIDNumber];
             float fractionalChange = 0.0;
             if ( [cell area] > 0.0 )
                 fractionalChange = 1.0 - MAX(MIN([testCell area] / [cell area], 1.0), 0.0);
             fractionSum += fractionalChange;
-            [fractions setObject:[NSNumber numberWithFloat:fractionalChange] forKey:point.UUIDString];
+            [fractions setObject:[NSNumber numberWithFloat:fractionalChange] forKey:pointIDNumber];
         }
         if (fractionSum > 0.0)
         {
-            for ( DelaunayPoint *point in [voronoiCells keyEnumerator] )
+            for ( NSNumber *pointIDNumber in [voronoiCells keyEnumerator] )
             {
-                VoronoiCell *cell = [voronoiCells objectForKey:point.UUIDString];
-                NSNumber *fractionalChange = [fractions objectForKey:point.UUIDString];
+                VoronoiCell *cell = [voronoiCells objectForKey:pointIDNumber];
+                NSNumber *fractionalChange = [fractions objectForKey:pointIDNumber];
                 cell.site.contribution = [fractionalChange floatValue] / fractionSum;
             }
         }

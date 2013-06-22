@@ -38,27 +38,21 @@
 }
 
 
-//- (BOOL)isEqual:(id)object
-//{
-//    if ([object isKindOfClass:[self class]])
-//    {
-//        DelaunayEdge *otherEdge = object;
-//        return ([(DelaunayPoint*)[self.points objectAtIndex:0] isEqual:(DelaunayPoint*)[otherEdge.points objectAtIndex:0]] &&
-//                [(DelaunayPoint*)[self.points objectAtIndex:1] isEqual:(DelaunayPoint*)[otherEdge.points objectAtIndex:1]]);
-//    }
-//    return NO;
-//}
-//- (NSUInteger)hash
-//{
-//    return [(DelaunayPoint*)[self.points objectAtIndex:0] hash] ^ [(DelaunayPoint*)[self.points objectAtIndex:1] hash];
-//
-//}
-//
-//- (id)copyWithZone:(NSZone *)zone
-//{
-//    DelaunayEdge *copy = [DelaunayEdge edgeWithPoints:self.points];
-//    return copy;
-//}
+- (BOOL)isEqual:(id)object
+{
+    if ([object isKindOfClass:[self class]])
+    {
+        DelaunayEdge *otherEdge = object;
+        return ([self.points[0] isEqual:otherEdge.points[0]] &&
+                [self.points[1] isEqual:otherEdge.points[1]]);
+    }
+    return NO;
+}
+- (NSUInteger)hash
+{
+    return [(DelaunayPoint*)[self.points objectAtIndex:0] hash] ^ [(DelaunayPoint*)[self.points objectAtIndex:1] hash];
+
+}
 
 - (NSString *)description
 {

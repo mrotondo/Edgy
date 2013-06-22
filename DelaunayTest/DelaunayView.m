@@ -38,42 +38,42 @@
 //            continue;
         
         [triangle.color set];
-        //[[UIColor whiteColor] set];
-        [[UIColor blackColor] setStroke];
+//        [[UIColor whiteColor] set];
+        [[UIColor whiteColor] setStroke];
         [triangle drawInContext:ctx];
         CGContextDrawPath(ctx, kCGPathFillStroke);
         //CGContextStrokePath(ctx);
         
     }
     
-    // Draw circumcenters & circumcircles
-    for (DelaunayTriangle *triangle in self.triangulation.triangles)
-    {
-        // Don't draw Delaunay triangles that include the frame edges
-//        if ([triangle inFrameTriangleOfTriangulation:self.triangulation])
-//            continue;
-
-        [[UIColor redColor] set];
-        CGPoint circumcenter = [triangle circumcenter];
-        CGContextMoveToPoint(ctx, circumcenter.x + 10, circumcenter.y);
-        CGContextAddArc(ctx, circumcenter.x, circumcenter.y, 10, 0, 2 * M_PI, 0);
-        CGContextFillPath(ctx);
-        
-        DelaunayPoint *p = [triangle startPoint];
-        float bigradius = sqrtf(powf(p.x - circumcenter.x, 2) + powf(p.y - circumcenter.y, 2));
-        CGContextMoveToPoint(ctx, circumcenter.x + bigradius, circumcenter.y);
-        CGContextAddArc(ctx, circumcenter.x, circumcenter.y, bigradius, 0, 2 * M_PI, 0);
-        CGContextStrokePath(ctx);
-    }
+//    // Draw circumcenters & circumcircles
+//    for (DelaunayTriangle *triangle in self.triangulation.triangles)
+//    {
+//        // Don't draw Delaunay triangles that include the frame edges
+////        if ([triangle inFrameTriangleOfTriangulation:self.triangulation])
+////            continue;
+//
+//        [[UIColor redColor] set];
+//        CGPoint circumcenter = [triangle circumcenter];
+//        CGContextMoveToPoint(ctx, circumcenter.x + 10, circumcenter.y);
+//        CGContextAddArc(ctx, circumcenter.x, circumcenter.y, 10, 0, 2 * M_PI, 0);
+//        CGContextFillPath(ctx);
+//        
+//        DelaunayPoint *p = [triangle startPoint];
+//        float bigradius = sqrtf(powf(p.x - circumcenter.x, 2) + powf(p.y - circumcenter.y, 2));
+//        CGContextMoveToPoint(ctx, circumcenter.x + bigradius, circumcenter.y);
+//        CGContextAddArc(ctx, circumcenter.x, circumcenter.y, bigradius, 0, 2 * M_PI, 0);
+//        CGContextStrokePath(ctx);
+//    }
 
     // Draw the voronoi cells
-//    NSDictionary *voronoiCells = [self.triangulation voronoiCells];    
-//    for (VoronoiCell *cell in [voronoiCells objectEnumerator])
-//    {
-//        [[UIColor colorWithWhite:cell.site.contribution alpha:0.5] set];
-//        [cell drawInContext:ctx];
-//        CGContextFillPath(ctx);
-//    }
+    NSDictionary *voronoiCells = [self.triangulation voronoiCells];    
+    for (VoronoiCell *cell in [voronoiCells objectEnumerator])
+    {
+        [[UIColor colorWithWhite:cell.site.contribution alpha:0.5] set];
+        [cell drawInContext:ctx];
+        CGContextFillPath(ctx);
+    }
 }
 
 
