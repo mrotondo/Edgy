@@ -19,7 +19,7 @@
 @property (nonatomic, strong) id value;
 @property (nonatomic, strong) UIColor *color;
 
-+ (DelaunayPoint *) pointAtX:(float)x andY:(float)y;
++ (DelaunayPoint *)pointAtX:(float)x andY:(float)y;
 + (DelaunayPoint *)pointAtX:(float)newX andY:(float)newY withID:(NSNumber *)idNumber;
 - (NSArray *)counterClockwiseEdges;
 

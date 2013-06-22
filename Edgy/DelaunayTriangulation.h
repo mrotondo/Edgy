@@ -28,6 +28,7 @@
 + (DelaunayTriangulation *)triangulationWithRect:(CGRect)rect;
 - (BOOL)addPoint:(DelaunayPoint *)newPoint withColor:(UIColor *)color;
 - (DelaunayTriangle *)triangleContainingPoint:(DelaunayPoint *)point;
+- (void)enforceDelaunayProperty;
 - (NSDictionary*)voronoiCells;
 - (void)interpolateWeightsWithPoint:(DelaunayPoint *)point;
 
