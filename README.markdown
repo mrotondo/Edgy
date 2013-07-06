@@ -28,3 +28,10 @@ DelaunayPoint *newPoint = [DelaunayPoint pointAtX:loc.x andY:loc.y];
 </pre>
 
 After interpolateWeightsWithPoint is called, each DelaunayPoint in the DelaunayTriangulation object's points set will have a contribution property that is between [0, 1] and represents the weight of that point's contribution to the output at the interpolated point.
+
+
+License
+-------
+Code is under the [Creative Commons Attribution 3.0 Unported license][license].
+
+[license]:http://creativecommons.org/licenses/by/3.0/
